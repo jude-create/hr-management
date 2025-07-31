@@ -34,6 +34,10 @@ const routeConfig = {
     title: 'Payroll',
     greeting: 'All Employee Records'
   },
+  '/jobs': {
+    title: 'Jobs',
+    greeting: 'Show All Jobs'
+  },
 }
 
 // Use computed to react to route changes
