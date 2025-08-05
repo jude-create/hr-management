@@ -1,9 +1,11 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref,  onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import name from '@/assets/img/name.png'
 import { BellIcon } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
+import ProfileModal from '@/modals/ProfileModal.vue'
+
 
 // Route
 const route = useRoute()
@@ -11,6 +13,11 @@ const route = useRoute()
 // Login state
 const isLoggedIn = ref(false)
 const toggleLogin = () => (isLoggedIn.value = !isLoggedIn.value)
+
+const profileModal = ref(false)
+function toggleModal() {
+  profileModal.value = !profileModal.value
+}
 
 // Map path to title/greeting
 const routeConfig = {
@@ -38,11 +45,21 @@ const routeConfig = {
     title: 'Jobs',
     greeting: 'Show All Jobs'
   },
+  '/notifications': {
+    title: 'Notifications',
+    greeting: 'All Notifications'
+  },
+  '/settings': {
+    title: 'Settings',
+    greeting: 'All System Settings'
+  },
 }
 
 // Use computed to react to route changes
 const title = computed(() => routeConfig[route.path]?.title || 'Hello Robert 👋🏻')
 const greeting = computed(() => routeConfig[route.path]?.greeting || 'Good Morning')
+
+
 </script>
 
 <template>
@@ -67,13 +84,16 @@ const greeting = computed(() => routeConfig[route.path]?.greeting || 'Good Morni
       </div>
 
       <!-- Notification -->
-      <div class="relative border border-gray-300 rounded-lg px-2 py-2 bg-[#A2A1A81A]">
+      <RouterLink
+      to="/notifications"
+      class="relative border border-gray-300 rounded-lg px-2 py-2 bg-[#A2A1A81A]">
         <BellIcon class="h-7 w-7 text-gray-500 cursor-pointer" />
-      </div>
+      </RouterLink>
 
       <!-- Profile -->
       <div 
-        v-if="!isLoggedIn"
+      
+        v-on:click="toggleModal" 
         class="flex items-center border border-gray-300 rounded-lg px-2 py-1 space-x-3 cursor-pointer"
         @click="toggleLogin"
       >
@@ -82,7 +102,7 @@ const greeting = computed(() => routeConfig[route.path]?.greeting || 'Good Morni
           <h3 class="text-base font-medium">Robert Smith</h3>
           <p class="text-xs text-gray-500">HR Manager</p>
         </div>
-        <ChevronDownIcon class="h-5 w-5 text-black" />
+        <ChevronDownIcon class="h-5 w-5 " />
       </div>
 
        <!-- If not logged in
@@ -94,5 +114,6 @@ const greeting = computed(() => routeConfig[route.path]?.greeting || 'Good Morni
       Login
     </RouterLink> -->
     </div>
+    <ProfileModal :visible="profileModal" @close="toggleModal" />
   </section>
 </template>

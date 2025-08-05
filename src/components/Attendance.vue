@@ -248,7 +248,7 @@ defineProps({
     <!-- Table -->
     <div>
       <!-- Table Header -->
-      <div class="flex border-b-2 border-gray-200 pb-3 font-light text-[#A2A1A8] text-base">
+      <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
         <div class="w-[32%] px-6">Employee Name</div>
         <div class="w-[25%] px-6">Designation</div>
         <div class="w-[15%] px-6">Type</div>
@@ -257,7 +257,7 @@ defineProps({
       </div>
 
       <!-- Table Rows -->
-      <div class="divide-y divide-gray-100">
+      <div class="divide-y-2 divide-[#A2A1A81A] ">
         <div
          v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
         :key="index"

@@ -62,7 +62,7 @@ const isActive = (path) => {
             class="flex items-center w-full p-2 rounded-lg transition-colors"
             :class="{
               'bg-[#F5F3FF] text-[#7152F3] font-semibold border-l-4 border-[#7152F3]': isActive(item.path),
-              'hover:bg-[#7152F310] text-gray-700 font-normal': !isActive(item.path)
+              'hover:bg-[#7152F310]  font-normal': !isActive(item.path)
             }"
           >
             <component
@@ -70,7 +70,7 @@ const isActive = (path) => {
               class="size-5 mr-4"
               :class="{
                 'text-[#7152F3]': isActive(item.path),
-                'text-gray-500': !isActive(item.path)
+                '': !isActive(item.path)
               }"
             />
             <h2 class="text-base">{{ item.name }}</h2>

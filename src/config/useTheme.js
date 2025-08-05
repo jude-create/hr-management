@@ -1,44 +1,60 @@
 // src/composables/useTheme.js
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-export default function useTheme() {
-  const isDark = ref(false)
+// Create a singleton instance
+const themeInstance = (() => {
+  const theme = ref(localStorage.getItem('theme') || 'system');
+  let initialized = false;
+  
+  return () => {
+    const isDark = computed(() => {
+      if (theme.value === 'system') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      return theme.value === 'dark';
+    });
 
-  const applyDarkTheme = () => {
-    isDark.value = true
-    document.documentElement.classList.add('dark')
-    document.body.style.backgroundColor = '#16151C'
-    document.body.style.color = '#FFFFFF'
-    localStorage.setItem('theme', 'dark')
-  }
-
-  const applyLightTheme = () => {
-    isDark.value = false
-    document.documentElement.classList.remove('dark')
-    document.body.style.backgroundColor = '#FFFFFF'
-    document.body.style.color = '#000000'
-    localStorage.setItem('theme', 'light')
-  }
-
-  const toggleTheme = () => {
-    isDark.value ? applyLightTheme() : applyDarkTheme()
-  }
-
-  onMounted(() => {
-    const savedTheme = localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-      applyDarkTheme()
-    } else {
-      applyLightTheme()
+    function applyTheme() {
+      if (isDark.value) {
+        document.documentElement.classList.add('dark');
+        document.body.style.backgroundColor = '#16151C';
+        document.body.style.color = '#FFFFFF';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.style.backgroundColor = '#FFFFFF';
+        document.body.style.color = '#000000';
+      }
     }
-  })
 
-  return {
-    isDark,
-    applyDarkTheme,
-    applyLightTheme,
-    toggleTheme
-  }
-} 
+    function setTheme(newTheme) {
+      theme.value = newTheme;
+      localStorage.setItem('theme', newTheme);
+      applyTheme();
+    }
+
+    function toggleTheme() {
+      setTheme(isDark.value ? 'light' : 'dark');
+    }
+
+    if (!initialized) {
+      onMounted(() => {
+        applyTheme();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (theme.value === 'system') {
+            applyTheme();
+          }
+        });
+      });
+      initialized = true;
+    }
+
+    return {
+      theme,
+      isDark,
+      setTheme,
+      toggleTheme
+    };
+  };
+})();
+
+export default themeInstance;

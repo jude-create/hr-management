@@ -211,7 +211,7 @@ watch([selectedCandidates, currentPage, perPage], () => {
     <div class="overflow-x-auto">
       <div class="inline-block min-w-full">
         <!-- Table Header -->
-        <div class="grid grid-cols-15 border-b-2 border-gray-200 pb-3 font-light text-[#A2A1A8] items-center">
+        <div class="grid grid-cols-15 border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] items-center">
           <div class="col-span-1 px-2 flex items-center">
            <input
              type="checkbox"
@@ -230,7 +230,7 @@ watch([selectedCandidates, currentPage, perPage], () => {
         </div>
 
         <!-- Table Rows -->
-        <div class="divide-y divide-gray-100">
+        <div class="divide-y-2 divide-[#A2A1A81A] ">
           <div
             v-for="(candidate, index) in currentPageCandidates"
             :key="index"
