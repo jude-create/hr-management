@@ -1,6 +1,10 @@
 
 @import "tailwindcss";
 
+body {
+  font-family: 'Lexend', sans-serif;
+}
+
 
 
 

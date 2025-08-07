@@ -6,6 +6,10 @@ import Image3 from '@/assets/img/image3.png'
 import Image4 from '@/assets/img/image4.png'
 import Image5 from '@/assets/img/image5.png'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
+import useTheme from '@/config/useTheme'
+
+
+const { isDark } = useTheme()
 
 const candidates = [
   {
@@ -294,11 +298,15 @@ watch([selectedCandidates, currentPage, perPage], () => {
     <div v-if="showPagination" class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-4 px-2">
       <!-- Rows per page selector -->
       <div class="flex items-center space-x-2">
-        <label class="text-xs sm:text-sm text-[#A2A1A8]">Show</label>
+        <label class="text-xs sm:text-sm text-[#A2A1A8]">Showing</label>
         <select 
           v-model="perPage" 
-          class="border rounded px-2 py-1 text-xs sm:text-sm bg-white"
-        >
+          class="border rounded px-2 py-1 text-xs sm:text-sm "
+          :class="{
+            'bg-[#16151C] text-[#FFFFFF]': isDark,
+            'bg-[#FFFFFF] text-[#16151C]': !isDark
+          }"
+          >
           <option :value="5">5</option>
           <option :value="10">10</option>
           <option :value="15">15</option>

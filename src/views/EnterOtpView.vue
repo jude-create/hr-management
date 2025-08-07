@@ -119,7 +119,8 @@ const closeModal = () => {
         <p class="text-[#A7A19E] font-light ">Your password has been update successfully</p>
         <button
           @click="closeModal"
-          class="mt-4  bg-[#7152F3] hover:bg-[#5b41cc] text-white px-6 py-2 rounded-lg w-full"
+          class="mt-4  bg-[#7152F3] hover:bg-[#5b41cc] text-white px-6 py-2 rounded-lg w-full
+           cursor-pointer transition-colors ease-in-out duration-150"
         >
           Back to Login
         </button>

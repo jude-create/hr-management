@@ -54,13 +54,13 @@ const props = defineProps({
        
 
         <div class="flex justify-between text-sm  mt-8">
-          <div class="flex space-x-1 pt-1 ">
+          <div class="flex space-x-1 pt-1  ">
                 <MapPin class="h-5 w-5" />
-               <span>{{ task.location }}</span>
+               <span class="font-light">{{ task.location }}</span>
           </div>
           
           <span class="flex" >
-            <p class="font-semibold text-lg">{{ task.salary }}</p>
+            <p class="font-semibold text-base">{{ task.salary }}</p>
              <p class="mt-1">/Month</p>
             </span>
         </div>

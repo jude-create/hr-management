@@ -44,17 +44,19 @@ onUnmounted(() => {
       'bg-[#16151C] text-[#FFFFFF]': isDark,
       'bg-[#FFFFFF] text-[#16151C]': !isDark
     }"
-    class="w-[190px]  max-w-xs rounded-lg shadow-xl py-5 px-4 relative   h-24 top-20  left-3/6 transform -translate-x-1/2 mr-14">
-    <div class="space-y-4 flex flex-col justify-center ">
+    class="w-[190px]  max-w-xs rounded-lg shadow-xl py-5 px-4 relative   h-28 top-20  left-3/6 transform -translate-x-1/2 mr-14">
+    <div class=" flex flex-col space-y-5 justify-center ">
 
-     <div class="flex space-x-3 items-center">
+     <div class="flex space-x-3  items-cente  cursor-pointer   hover:bg-[#A2A1A8]
+      transition-colors ease-in-out duration-200r">
         <UserIcon class="h-6 w-6 text-gray-500 " />
          <h2>My Profile</h2>
      </div>
 
      <RouterLink 
      to="/login"
-     class="flex space-x-3 items-center text-[#F45B69]">
+     class="flex space-x-3  items-center text-[#F45B69]  cursor-pointer   hover:bg-[#A2A1A8]
+      transition-colors ease-in-out duration-200">
         <LogOut class="h-6 w-6 " />
         <h2>Logout</h2>
      </RouterLink>

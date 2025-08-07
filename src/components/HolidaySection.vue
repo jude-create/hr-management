@@ -37,11 +37,11 @@ const isUpcoming = (dateString) => {
                 <!-- Updated border color conditional -->
                 <div 
                   :class="{
-                    'border-[#7152F3]': isUpcoming(holiday.date),
-                    'border-[#A2A1A81A]': !isUpcoming(holiday.date)
+                    'border-[#7152F3] bg-[#7152F3]': isUpcoming(holiday.date),
+                    'border-[#A2A1A81A] bg-[#A2A1A81A]': !isUpcoming(holiday.date)
                   }" 
-                  class="col-span-3 border-2 bg-[#A2A1A81A] h-10 w-1 rounded-xl" 
-                />
+                  class="col-span-3 border-2  h-10 w-1 rounded-xl" 
+                ></div>
                 <div class="flex items-center space-x-2"> 
                   <span>{{ holiday.date }}</span>
                 </div>

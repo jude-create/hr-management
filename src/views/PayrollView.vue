@@ -21,7 +21,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
       <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-6 shadow-sm mx-3 mb-8">
       <!-- Search -->
      <div class=" relative ">
-        <MagnifyingGlassIcon class="h-6 w-6 text-gray-500 absolute ml-2 mt-2" />
+        <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-2" />
        <input
        type="text"
         placeholder="Search..."

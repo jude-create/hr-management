@@ -6,6 +6,9 @@ import Image3 from '@/assets/img/image3.png'
 import Image4 from '@/assets/img/image4.png'
 import Image5 from '@/assets/img/image5.png'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
+import useTheme from '@/config/useTheme'
+
+const { isDark } = useTheme()
 
 const employees = [
   {
@@ -254,7 +257,12 @@ defineProps({
   <!-- Rows per page selector -->
   <div class="space-x-4 flex items-center">
     <label class="text-sm text-[#A2A1A8]">Showing</label>
-    <select v-model="perPage" class="border rounded-md px-3 py-1 text-sm">
+    <select v-model="perPage" class="border rounded-md px-3 py-1 text-sm"
+      :class="{
+      'bg-[#16151C] text-[#FFFFFF]': isDark,
+      'bg-[#FFFFFF] text-[#16151C]': !isDark
+    }"
+    >
       <option :value="5">5</option>
       <option :value="10">10</option>
       <option :value="15">15</option>
@@ -269,7 +277,7 @@ defineProps({
     <button
       :disabled="currentPage === 1"
       @click="currentPage--"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm"
+      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
     >
       <ChevronLeftIcon class="h-6 w-6 inline-block" />
     </button>
@@ -291,9 +299,9 @@ defineProps({
 
     <!-- Next -->
     <button
-      :disabled="currentPage === totalPages"
+      :disabled="currentPage === totalPages || totalPages === 0"
       @click="currentPage++"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm"
+      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
     >
       <ChevronRightIcon class="h-6 w-6 inline-block" />
     </button>

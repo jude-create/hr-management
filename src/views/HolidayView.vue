@@ -47,7 +47,7 @@ const holidays = ref([
 
     <div class="flex justify-between">
        <div class=" relative ">
-        <MagnifyingGlassIcon class="h-6 w-6 text-gray-500 absolute ml-2 mt-3" />
+        <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-3" />
        <input
        type="text"
         placeholder="Search..."
@@ -56,7 +56,9 @@ const holidays = ref([
       />
     </div>
 
-    <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] rounded-lg p-3 font-light">
+    <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] 
+    text-[#FFFFFF] rounded-lg p-3 font-light shadow-sm cursor-pointer hover:bg-[#5b41cc]
+    transition-colors ease-in-out duration-200">
         <CirclePlus />
 
         <div>

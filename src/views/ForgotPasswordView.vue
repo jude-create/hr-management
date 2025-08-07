@@ -60,7 +60,9 @@ const handleLogin = () => {
         <!-- ✅ Send OTP Button -->
         <button
           type="submit"
-          class="w-full bg-[#7152F3] hover:bg-[#5b41cc] text-white py-3 rounded-lg font-medium mt-2"
+          class="w-full bg-[#7152F3] hover:bg-[#5b41cc] text-white 
+          py-3 rounded-lg font-medium mt-2  cursor-pointer 
+      transition-colors ease-in-out duration-150"
         >
           Send OTP
         </button>
