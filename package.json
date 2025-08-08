@@ -13,6 +13,7 @@
     "@heroicons/vue": "^2.2.0",
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/vite": "^4.1.11",
+    "@vueuse/core": "^13.6.0",
     "chart.js": "^4.5.0",
     "chartjs-plugin-datalabels": "^2.2.0",
     "lucide-react": "^0.526.0",

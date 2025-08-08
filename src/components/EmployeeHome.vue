@@ -4,6 +4,14 @@ import { AdjustmentsHorizontalIcon, EyeIcon, PencilIcon, TrashIcon } from '@hero
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ChevronLeftIcon, ChevronRightIcon, CirclePlus } from 'lucide-vue-next'
 import departments from '@/data/departments'
+import EmployeeFilter from '@/modals/EmployeeFilter.vue'
+
+
+
+const taskModal = ref(false)
+function toggleModal() {
+  taskModal.value = !taskModal.value
+}
 
 const search = ref('')
 
@@ -86,12 +94,17 @@ const membersWithDepartment = computed(() => {
         />
       </div>
       <div class="flex space-x-4">
-        <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] rounded-lg p-3 font-light cursor-pointer shadow-sm">
+        <RouterLink
+        to="/employees/add-new-employee"
+         
+          class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] rounded-lg p-3 font-light cursor-pointer shadow-sm">
           <CirclePlus />
           <div>Add New Employee</div>
-        </button>
+        </RouterLink>
         
-        <button class="flex items-center justify-center space-x-3 border border-[#A2A1A833] rounded-lg py-3 px-7 font-light cursor-pointer shadow-sm">
+        <button
+        v-on:click="toggleModal"
+        class="flex items-center justify-center space-x-3 border border-[#A2A1A833] rounded-lg py-3 px-7 font-light cursor-pointer shadow-sm">
           <AdjustmentsHorizontalIcon class="h-5 w-5" />
           <div>Filter</div>
         </button>
@@ -100,7 +113,7 @@ const membersWithDepartment = computed(() => {
 
     <div class="pt-6">
       <!-- Header -->
-      <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
+      <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#655b9e] text-base">
         <div class="w-[15%] px-4">Employee ID</div>
         <div class="w-[25%] px-4">Employee Name</div>
         <div class="w-[12%] px-4">Department</div>
@@ -219,5 +232,6 @@ const membersWithDepartment = computed(() => {
         </button>
       </div>
     </div>
+     <EmployeeFilter :visible="taskModal" @close="toggleModal" />
   </div>
 </template>

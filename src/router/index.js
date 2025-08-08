@@ -15,6 +15,7 @@ const routes = [
    { path: '/login', component: () => import('@/views/LoginView.vue') },
    { path: '/forgot-password', component: () => import('@/views/ForgotPasswordView.vue') },
    { path: '/forgot-password/enter-otp', component: () => import('@/views/EnterOtpView.vue') },
+    { path: '/employees/add-new-employee', component: () => import('@/views/AddEmployeeView.vue') },
 //   // Add other routes accordingly
 ]
 

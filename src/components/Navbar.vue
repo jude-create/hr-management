@@ -44,7 +44,7 @@ const isActive = (path) => {
 </script>
 
 <template>
-  <aside class="fixed top-0 left-0 h-screen flex flex-col rounded-lg bg-[#A2A1A80D] w-64 md:w-60 m-2 px-5 pt-4 shadow-sm">
+  <aside class="fixed top-0 left-0 h-screen flex flex-col rounded-lg bg-[#A2A1A80D] w-64 md:w-60 m-3 px-5 pt-2 shadow-sm ">
     <!-- Logo and Header -->
     <div class="flex-shrink-0">
       <div class="flex items-center space-x-2 mb-4">
@@ -80,7 +80,7 @@ const isActive = (path) => {
     </nav>
 
     <!-- Theme Toggle (fixed at bottom) -->
-    <div class="flex-shrink-0 pb-3 sticky bottom-0 ">
+    <div class="flex-shrink-0 pb-11 sticky bottom-0 ">
       <div class="flex items-center border rounded-lg w-fit mx-auto shadow-md overflow-hidden">
         <button
           @click="toggleTheme"

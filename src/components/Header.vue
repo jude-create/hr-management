@@ -14,7 +14,6 @@ const profileModal = ref(false)
 const toggleLogin = () => (isLoggedIn.value = !isLoggedIn.value)
 const toggleModal = () => (profileModal.value = !profileModal.value)
 
-// Props for dynamic department data
 const props = defineProps({
   department: {
     type: Object,
@@ -22,56 +21,98 @@ const props = defineProps({
   }
 })
 
-// Title and greeting logic
+// Map of base routes to title/greeting
+const routeMeta = {
+  '/employees': {
+    title: 'Employees',
+    greeting: 'All Employees',
+    linkText: 'All Employees',
+    linkTo: '/employees'
+  },
+  '/departments': {
+    title: 'All Departments',
+    greeting: 'All Departments Information',
+    linkText: 'All Departments',
+    linkTo: '/departments'
+  },
+  '/attendance': {
+    title: 'Attendance',
+    greeting: 'All Employee Attendance'
+  },
+  '/holidays': {
+    title: 'Holidays',
+    greeting: 'Company Holidays'
+  },
+  '/candidates': {
+    title: 'Candidates',
+    greeting: 'All Candidate Records'
+  },
+  '/payroll': {
+    title: 'Payroll',
+    greeting: 'All Employee Records'
+  },
+  '/jobs': {
+    title: 'Jobs',
+    greeting: 'Show All Jobs'
+  },
+  '/notifications': {
+    title: 'Notifications',
+    greeting: 'All Notifications'
+  },
+  '/settings': {
+    title: 'Settings',
+    greeting: 'All System Settings'
+  }
+}
+
+const basePath = computed(() => {
+  const segments = route.path.split('/')
+  return '/' + (segments[1] || '')
+})
+
 const title = computed(() => {
+  // Department case
   if (route.path.startsWith('/departments/') && props.department) {
-    return props.department.name + " Department"
+    return `${props.department.name} Department`
   }
-  
-  // Default titles for other routes
-  const routeTitles = {
-    '/employees': 'Employees',
-    '/departments': 'All Departments',
-    '/attendance': 'Attendance',
-    '/holidays': 'Holidays',
-    '/candidates': 'Candidates',
-    '/payroll': 'Payroll',
-    '/jobs': 'Jobs',
-    '/notifications': 'Notifications',
-    '/settings': 'Settings'
+
+  // Add-new-employee case
+  if (route.path === '/employees/add-new-employee') {
+    return 'Add New Employee'
   }
-  
-  return routeTitles[route.path] || 'Hello Robert 👋🏻'
+
+  // Default mapping
+  return routeMeta[basePath.value]?.title || 'Hello Robert 👋🏻'
 })
 
 const greeting = computed(() => {
+  // Department breadcrumb
   if (route.path.startsWith('/departments/') && props.department) {
     return {
-      clickablePart: 'All Departments',
-      staticPart: ` > ${props.department.name}`
+      clickablePart: routeMeta['/departments'].linkText,
+      clickableTo: routeMeta['/departments'].linkTo,
+      staticPart: ` >  ${props.department.name} Department`
     }
   }
-  
-  // Default greetings for other routes
-  const routeGreetings = {
-    '/employees': 'All Employees',
-    '/departments': 'All Departments Information',
-    '/attendance': 'All Employee Attendance',
-    '/holidays': 'Company Holidays',
-    '/candidates': 'All Candidate Records',
-    '/payroll': 'All Employee Records',
-    '/jobs': 'Show All Jobs',
-    '/notifications': 'All Notifications',
-    '/settings': 'All System Settings'
+
+  // Add-new-employee breadcrumb
+  if (route.path === '/employees/add-new-employee') {
+    return {
+      clickablePart: routeMeta['/employees'].linkText,
+      clickableTo: routeMeta['/employees'].linkTo,
+      staticPart: ' >  Add New Employee'
+    }
   }
-  
-  return routeGreetings[route.path] || 'Good Morning'
+
+  // Default text
+  return routeMeta[basePath.value]?.greeting || 'Good Morning'
 })
 
-const navigateToDepartments = () => {
-  router.push('/departments')
+const navigateTo = (path) => {
+  router.push(path)
 }
 </script>
+
 
 <template>
   <section class="w-full flex items-center px-3 pt-6">
@@ -79,19 +120,21 @@ const navigateToDepartments = () => {
     <div class="font-semibold text-lg">
       <h2>{{ title }}</h2>
        <h4 class="text-sm text-gray-500 font-light">
-        <template v-if="route.path.startsWith('/departments/') && props.department">
-          <span 
-            class="cursor-pointer hover:text-[#7152F3] transition-colors"
-            @click="navigateToDepartments"
-          >
-            {{ greeting.clickablePart }}
-          </span>
-          <span>{{ greeting.staticPart }} Department</span>
-        </template>
-        <template v-else>
-          {{ greeting }}
-        </template>
-      </h4>
+  <template v-if="typeof greeting === 'object'"
+  >
+    <span 
+      class="cursor-pointer hover:text-[#7152F3] transition-colors"
+      @click="navigateTo(greeting.clickableTo)"
+    >
+      {{ greeting.clickablePart }}
+    </span>
+    <span> {{ greeting.staticPart }}</span>
+  </template>
+  <template v-else>
+    {{ greeting }}
+  </template>
+</h4>
+
     </div>
 
     <!-- Right: search + profile -->

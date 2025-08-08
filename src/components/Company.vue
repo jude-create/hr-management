@@ -40,7 +40,7 @@ const companyStats = [
 </script>
 
 <template>
-  <section class="grid grid-cols-2 gap-5 pt-6">
+  <section class="grid grid-cols-2 gap-y-5 gap-x-3 pt-6">
     <CompanyCard
       v-for="(card, index) in companyStats"
       :key="index"
