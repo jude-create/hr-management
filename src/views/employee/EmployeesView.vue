@@ -1,6 +1,6 @@
 <script setup>
 
-import EmployeeHome from '@/components/EmployeeHome.vue';
+import EmployeeHome from '@/components/Employee/EmployeeHome.vue';
 import Header from '@/components/Header.vue';
 import Navbar from '@/components/Navbar.vue';
 
@@ -19,7 +19,11 @@ import Navbar from '@/components/Navbar.vue';
     <main class="flex-1  space-y-6">
       <Header />
 
-     <EmployeeHome />
+
+      <div class="mt-8 mb-5">
+      <EmployeeHome />
+      </div>
+     
      
    
     

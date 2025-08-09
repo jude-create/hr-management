@@ -8,8 +8,14 @@ import Header from '@/components/Header.vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ChevronLeftIcon, ChevronRightIcon, CirclePlus } from 'lucide-vue-next'
 import useTheme from '@/config/useTheme'
+import EmployeeFilter from '@/modals/EmployeeFilter.vue'
 
 const { isDark } = useTheme()
+
+const taskModal = ref(false)
+function toggleModal() {
+  taskModal.value = !taskModal.value
+}
 
 const route = useRoute()
 const departmentSlug = route.params.slug
@@ -86,18 +92,24 @@ const visiblePages = computed(() => {
           />
         </div>
         <div class="flex space-x-4">
-           <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] rounded-lg p-3 font-light cursor-pointer shadow-sm">
+           <RouterLink
+           to="/employees/add-new-employee"
+            class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] 
+            rounded-lg p-3 font-light cursor-pointer shadow-sm r-pointer hover:bg-[#5b41cc]
+    transition-colors ease-in-out duration-200">
             <CirclePlus />
 
              <div>
              Add New Employee
           </div>
-         </button>
+         </RouterLink>
           
          
 
 
-          <button class="flex items-center justify-center space-x-3 border border-[#A2A1A833] 
+          <button
+          v-on:click="toggleModal"
+          class="flex items-center justify-center space-x-3 border border-[#A2A1A833] 
            rounded-lg py-3 px-7 font-light cursor-pointer shadow-sm">
             <AdjustmentsHorizontalIcon class="h-5 w-5 " />
             <div>
@@ -112,16 +124,16 @@ const visiblePages = computed(() => {
         </div>
 
 
-        <div class="pt-6">
+        <div class="pt-8">
          
           <!-- Header -->
           <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
-            <div class="w-[15%] px-4">Employee ID</div>
-            <div class="w-[35%] px-4">Employee Name</div>
-            <div class="w-[25%] px-4">Designation</div>
-            <div class="w-[15%] px-4">Type</div>
-            <div class="w-[15%] px-4">Status</div>
-            <div class="w-[15%] px-4">Action</div>
+            <div class="w-[18%] px-3">Employee ID</div>
+            <div class="w-[32%] px-3">Employee Name</div>
+            <div class="w-[25%] px-3">Designation</div>
+            <div class="w-[15%] px-3">Type</div>
+            <div class="w-[15%] px-3">Status</div>
+            <div class="w-[15%] px-3">Action</div>
           </div>
 
           <!-- Rows -->
@@ -132,11 +144,11 @@ const visiblePages = computed(() => {
               class="flex py-3 items-center hover:bg-[#7152F310] transition-colors text-base"
             >
               <!-- Employee ID -->
-              <div class="w-[15%] px-4 font-light ">
+              <div class="w-[18%] px-3 font-light ">
                 {{ member.id }}
               </div>
               <!-- Name + Avatar -->
-              <div class="w-[35%] px-4 flex items-center space-x-4">
+              <div class="w-[32%] px-3 flex items-center space-x-4">
                 <img
                   :src="member.avatar"
                   alt="Employee"
@@ -146,17 +158,17 @@ const visiblePages = computed(() => {
               </div>
 
               <!-- Designation -->
-              <div class="w-[25%] px-4 font-light ">
+              <div class="w-[25%] px-3 font-light ">
                 {{ member.title }}
               </div>
 
               <!-- Type -->
-              <div class="w-[15%] px-4 font-light ">
+              <div class="w-[15%] px-3 font-light ">
                 {{ member.type || 'Full Time' }}
               </div>
 
               <!-- Status -->
-              <div class="w-[15%] px-4">
+              <div class="w-[15%] px-3">
                 <span
                   class="inline-flex items-center justify-center font-light text-sm px-2 py-2 rounded-lg"
                   :style="{ color: member.statusColor || '#7152F3', backgroundColor: (member.statusColor || '#7152F3') + '1A' }"
@@ -166,7 +178,7 @@ const visiblePages = computed(() => {
               </div>
 
               <!-- Actions -->
-              <div class="w-[15%] px-4 font-light  flex items-center space-x-2">
+              <div class="w-[15%] px-3 font-light  flex items-center space-x-2">
                 <EyeIcon class="h-5 w-5  cursor-pointer" />
                 <PencilIcon class="h-5 w-5  cursor-pointer" />
                 <TrashIcon class="h-5 w-5  cursor-pointer" />
@@ -233,5 +245,6 @@ const visiblePages = computed(() => {
         </div>
       </div>
     </main>
+    <EmployeeFilter :visible="taskModal" @close="toggleModal" />
   </div>
 </template>

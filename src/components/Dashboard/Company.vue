@@ -1,5 +1,5 @@
 <script setup>
-import CompanyCard from '@/components/CompanyCard.vue'
+import CompanyCard from '@/components/Dashboard/CompanyCard.vue'
 import { UserGroupIcon, BriefcaseIcon } from '@heroicons/vue/24/outline'
 import { CalendarCheck } from 'lucide-vue-next'
 

@@ -71,7 +71,7 @@ const tasks = ref({
     </div>
     
      
-        <div class="flex space-x-12 w-full">
+        <div class="flex space-x-12 w-full mt-3">
       <JobSection
         title="Active Jobs"
         :tasks="tasks.active"

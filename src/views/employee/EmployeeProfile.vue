@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-
-import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/vue/24/solid'
 import Header from '@/components/Header.vue'
 import Navbar from '@/components/Navbar.vue'
-import JobModal from '@/modals/JobModal.vue'
-import { CirclePlus } from 'lucide-vue-next'
-import HolidaySection from '@/components/HolidaySection.vue'
-import HolidayModal from '@/modals/HolidayModal.vue'
+import Employee from '@/assets/img/employee.png'
+import { BriefcaseBusiness, CirclePlus, PencilLine } from 'lucide-vue-next'
+
+import Profile from '@/components/Employee/Employee-profile/Profile.vue'
+import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 
 const taskModal = ref(false)
 function toggleModal() {
@@ -42,51 +41,51 @@ const holidays = ref([
     <main class="flex-1  space-y-6">
       <Header />
 
-      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-6 shadow-sm mx-3 mb-8">
+      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-4 shadow-sm mx-3 mb-8">
       <!-- Search -->
 
-    <div class="flex justify-between">
-       <div class=" relative ">
-        <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-3" />
-       <input
-       type="text"
-        placeholder="Search..."
-       class="pl-10 pr-2 px-2 py-3 w-80 bg-transparent placeholder:text-[#8A8D91] text-base border border-gray-300 rounded-lg 
-         focus:outline-none focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
-      />
-    </div>
+    <div class="flex justify-between ">
+       <div class="flex items-center space-x-4">
+        <div>
+            <img :src="Employee" alt="Employee" class="w-24 h-24 rounded-md ">
+            
+        </div>
 
-    <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] 
+        <div class="space-y-2 font-light">
+            <h1 class="font-semibold text-xl">Brooklyn Simmons</h1>
+
+            <div class="flex items-center space-x-2">
+                 <BriefcaseBusiness class="w-6 h-6 inline-block mr-2" />
+                 <p>Project Manager</p>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <EnvelopeIcon class="w-6 h-6 inline-block mr-2" />
+                <p>brooklyn.s@example.com</p>
+            </div>
+            
+        </div>
+       </div>
+    
+    <div class="flex justify-end items-end">
+        <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] 
     text-[#FFFFFF] rounded-lg p-3 font-light shadow-sm cursor-pointer hover:bg-[#5b41cc]
     transition-colors ease-in-out duration-200">
-        <CirclePlus />
+        <PencilLine />
 
         <div>
-          Add New Holiday
+          Edit Profile
        </div>
+    
+    
     </button>
     </div>
-    
+    </div>
+    <div>
+        <Profile />
+    </div>
      
-     <div class=" w-full mt-4">
-    <HolidaySection
-    :holidays="holidays"
-    />
     </div>
-    
-    <div class="flex items-center space-x-5 mt-6 mb-5">
-        <div class="flex items-center space-x-2">
-            <div class="border border-[#7152F3] bg-[#7152F3] rounded-full w-4 h-4" />
-            <p class="font-semibold text-sm">Upcoming</p>
-        </div>
-
-         <div class="flex items-center space-x-2">
-            <div class="border border-[#A2A1A833] bg-[#A2A1A833] rounded-full w-4 h-4" />
-            <p class="font-semibold text-sm">Past Holidays</p>
-        </div>
-    </div>
-    <HolidayModal :visible="taskModal" @close="toggleModal" />
-  </div>
 
     </main>
     </div>

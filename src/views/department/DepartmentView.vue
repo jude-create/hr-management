@@ -1,6 +1,6 @@
 <script setup>
 import departments from '@/data/departments'
-import DepartmentCard from '@/components/DepartmentCard.vue'
+import DepartmentCard from '@/components/Department/DepartmentCard.vue'
 import Header from '@/components/Header.vue'
 import Navbar from '@/components/Navbar.vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'

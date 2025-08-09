@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import Attendance from './Attendance.vue';
+import Attendance from '../Attendance.vue';
+
 
 
 </script>

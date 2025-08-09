@@ -45,7 +45,7 @@ import { CircleArrowOutUpLeft } from 'lucide-vue-next';
      
     </div>
      
-    <div class="mt-6 mb-5">
+    <div class="mt-8 mb-5">
       <Payroll />
     </div>
       

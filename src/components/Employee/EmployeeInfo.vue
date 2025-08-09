@@ -7,10 +7,11 @@ import { UserIcon as UserOutline, BriefcaseIcon as BriefcaseOutline, DocumentIco
 // Solid icons
 import { UserIcon as UserSolid, BriefcaseIcon as BriefcaseSolid, DocumentIcon as DocumentSolid, LockClosedIcon as KeySolid } from '@heroicons/vue/24/solid'
 
-import StepPersonal from '@/components/employeeSteps/StepPersonal.vue'
-import StepProfessional from '@/components/employeeSteps/StepProfessional.vue'
-import StepDocuments from '@/components/employeeSteps/StepDocuments.vue'
+
 import StepAccess from './employeeSteps/StepAccess.vue'
+import StepPersonal from './employeeSteps/StepPersonal.vue'
+import StepProfessional from './employeeSteps/StepProfessional.vue'
+import StepDocuments from './employeeSteps/StepDocuments.vue'
 
 const currentStep = ref(1)
 const totalSteps = 4

@@ -252,11 +252,11 @@ defineProps({
     <div>
       <!-- Table Header -->
       <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
-        <div class="w-[32%] px-6">Employee Name</div>
-        <div class="w-[25%] px-6">Designation</div>
-        <div class="w-[15%] px-6">Type</div>
-        <div class="w-[18%] px-6">Check In Time</div>
-        <div class="w-[15%] px-6">Status</div>
+        <div class="w-[32%] px-4">Employee Name</div>
+        <div class="w-[25%] px-4">Designation</div>
+        <div class="w-[12%] px-4">Type</div>
+        <div class="w-[18%] px-4">Check In Time</div>
+        <div class="w-[18%] px-4">Status</div>
       </div>
 
       <!-- Table Rows -->
@@ -266,14 +266,14 @@ defineProps({
         :key="index"
           class="flex py-2 items-center hover:bg-[#7152F310] transition-colors text-base"
         >
-          <div class="w-[32%] px-6 flex items-center space-x-4">
+          <div class="w-[32%] px-4 flex items-center space-x-4">
             <img :src="employee.image" alt="Employee" class="w-12 h-12 rounded-full object-cover" />
             <p class="font-light">{{ employee.name }}</p>
           </div>
-          <div class="w-[25%] px-6 font-light">{{ employee.designation }}</div>
-          <div class="w-[15%] px-6 font-light">{{ employee.type }}</div>
-          <div class="w-[18%] px-6 font-light">{{ employee.checkIn }}</div>
-          <div class="w-[15%] px-6">
+          <div class="w-[25%] px-4 font-light">{{ employee.designation }}</div>
+          <div class="w-[12%] px-4 font-light">{{ employee.type }}</div>
+          <div class="w-[18%] px-4 font-light">{{ employee.checkIn }}</div>
+          <div class="w-[18%] px-4">
             <span
               class="inline-flex items-center justify-center font-light text-sm px-4 py-2 rounded-lg"
               :style="{ color: employee.statusColor, backgroundColor: `${employee.statusColor}1A` }"

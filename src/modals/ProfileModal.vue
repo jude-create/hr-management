@@ -47,11 +47,13 @@ onUnmounted(() => {
     class="w-[190px]  max-w-xs rounded-lg shadow-xl py-5 px-4 relative   h-28 top-20  left-3/6 transform -translate-x-1/2 mr-14">
     <div class=" flex flex-col space-y-5 justify-center ">
 
-     <div class="flex space-x-3  items-cente  cursor-pointer   hover:bg-[#A2A1A8]
+     <RouterLink
+     to="/employees/profile"
+     class="flex space-x-3  items-cente  cursor-pointer   hover:bg-[#A2A1A8]
       transition-colors ease-in-out duration-200r">
         <UserIcon class="h-6 w-6 text-gray-500 " />
          <h2>My Profile</h2>
-     </div>
+     </RouterLink>
 
      <RouterLink 
      to="/login"

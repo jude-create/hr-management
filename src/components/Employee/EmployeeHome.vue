@@ -97,7 +97,9 @@ const membersWithDepartment = computed(() => {
         <RouterLink
         to="/employees/add-new-employee"
          
-          class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] rounded-lg p-3 font-light cursor-pointer shadow-sm">
+          class="flex space-x-3 border border-[#7152F3] bg-[#7152F3] text-[#FFFFFF] 
+          rounded-lg p-3 font-light cursor-pointer shadow-sm r-pointer hover:bg-[#5b41cc]
+    transition-colors ease-in-out duration-200">
           <CirclePlus />
           <div>Add New Employee</div>
         </RouterLink>

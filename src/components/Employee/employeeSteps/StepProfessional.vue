@@ -1,8 +1,9 @@
 <script setup>
 import { CameraIcon } from 'lucide-vue-next'
 import { ref } from 'vue'
-import CustomSelect from '../CustomSelect.vue'
+
 import { DatePicker } from 'v-calendar'
+import CustomSelect from '@/components/CustomSelect.vue'
 
 const firstName = ref('')
 const lastName = ref('')

@@ -1,7 +1,8 @@
 <script setup>
+import CustomSelect from '@/components/CustomSelect.vue'
 import { CameraIcon } from 'lucide-vue-next'
 import { ref } from 'vue'
-import CustomSelect from '../CustomSelect.vue'
+
 
 const firstName = ref('')
 const lastName = ref('')

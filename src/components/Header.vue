@@ -81,6 +81,11 @@ const title = computed(() => {
     return 'Add New Employee'
   }
 
+   // employee profile case
+  if (route.path === '/employees/profile') {
+    return 'Brooklyn Simmons'
+  }
+
   // Default mapping
   return routeMeta[basePath.value]?.title || 'Hello Robert 👋🏻'
 })
@@ -104,6 +109,15 @@ const greeting = computed(() => {
     }
   }
 
+   // employee-profile breadcrumb
+  if (route.path === '/employees/profile') {
+    return {
+      clickablePart: routeMeta['/employees'].linkText,
+      clickableTo: routeMeta['/employees'].linkTo,
+      staticPart: ' >  Brooklyn Simmons'
+    }
+  }
+
   // Default text
   return routeMeta[basePath.value]?.greeting || 'Good Morning'
 })
@@ -115,7 +129,7 @@ const navigateTo = (path) => {
 
 
 <template>
-  <section class="w-full flex items-center px-3 pt-6">
+  <section class="sticky w-full flex items-center px-3 pt-6">
     <!-- Left title -->
     <div class="font-semibold text-lg">
       <h2>{{ title }}</h2>
