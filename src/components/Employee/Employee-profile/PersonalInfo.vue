@@ -2,6 +2,7 @@
 const props = defineProps({
   info: Array
 })
+
 </script>
 
 <template> 

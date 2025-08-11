@@ -1,13 +1,49 @@
 
 @import "tailwindcss";
 
+
 body {
   font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  
+
 }
 
 .input {
  @apply  w-full border-2 rounded-lg px-3 py-2 text-sm placeholder:text-[#8A8D91]
          border-[#A2A1A833] focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+
+/* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7152F3; /* Your scrollbar color */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a020f0; /* Lighter purple on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7152F3 transparent;
+}
+
+@media (max-width: 1024px) {
+  #app {
+    transform: scale(calc(100vw / 1024));
+    transform-origin: top left;
+    width: 1024px;
+  }
 }
 
 

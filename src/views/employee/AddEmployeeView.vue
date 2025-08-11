@@ -19,7 +19,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
     <main class="flex-1  space-y-6">
       <Header />
 
-      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-6 shadow-sm mx-3 mb-8">
+      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-25 shadow-sm mx-3 mb-8">
     
      
     <div class="mb-2">

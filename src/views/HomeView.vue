@@ -18,7 +18,7 @@ import Navbar from '@/components/Navbar.vue';
   <main class="flex-1 space-y-6">
     <Header />
     <!-- Company + Calendar -->
-    <div class="flex flex-wrap lg:flex-nowrap gap-y-6 gap-x-3 px-3 ">
+    <div class="flex flex-wrap lg:flex-nowrap gap-y-6 gap-x-3 px-3 mt-18">
       <div class="flex flex-col  flex-[2]">
         <Company />
         <AttendanceChart />

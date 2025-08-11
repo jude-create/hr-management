@@ -12,7 +12,7 @@ const { isDark} = useTheme()
 </script>
 
 <template>
-  <div v-if="visible" class="fixed inset-0 z-50 flex items-center justify-center bg-[#A2A1A833] backdrop-blur-sm">
+  <div v-if="visible" class="fixed inset-0 z-100 flex items-center justify-center bg-[#A2A1A833] backdrop-blur-sm ">
     <div 
      :class="{
       'bg-[#16151C] text-[#FFFFFF]': isDark,

@@ -5,6 +5,10 @@ import name from '@/assets/img/name.png'
 import { BellIcon } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import ProfileModal from '@/modals/ProfileModal.vue'
+import useTheme from '@/config/useTheme'
+import departments from '@/data/departments.js'
+
+const { isDark } = useTheme()
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +23,21 @@ const props = defineProps({
     type: Object,
     default: null
   }
+})
+
+
+
+const memberId = computed(() => route.params.id)
+
+const member = computed(() => {
+  return departments
+    .flatMap(dep => dep.members)
+    .find(m => m.id === memberId.value)
+})
+
+const departmentName = computed(() => {
+  const dep = departments.find(d => d.members.some(m => m.id === memberId.value))
+  return dep?.name || 'Unknown Department'
 })
 
 // Map of base routes to title/greeting
@@ -82,8 +101,8 @@ const title = computed(() => {
   }
 
    // employee profile case
-  if (route.path === '/employees/profile') {
-    return 'Brooklyn Simmons'
+ if (route.name === 'employee-profile' && member.value) {
+    return member.value.name
   }
 
   // Default mapping
@@ -110,14 +129,13 @@ const greeting = computed(() => {
   }
 
    // employee-profile breadcrumb
-  if (route.path === '/employees/profile') {
+  if (route.name === 'employee-profile' && member.value) {
     return {
       clickablePart: routeMeta['/employees'].linkText,
       clickableTo: routeMeta['/employees'].linkTo,
-      staticPart: ' >  Brooklyn Simmons'
+      staticPart: ` > ${member.value.name}`
     }
   }
-
   // Default text
   return routeMeta[basePath.value]?.greeting || 'Good Morning'
 })
@@ -129,7 +147,12 @@ const navigateTo = (path) => {
 
 
 <template>
-  <section class="sticky w-full flex items-center px-3 pt-6">
+  <section class="fixed  z-100 w-[78%] flex items-center px-3 pt-6 pb-3  "
+  :class="{
+      'bg-[#16151C] text-[#FFFFFF]': isDark,
+      'bg-[#FFFFFF] text-[#16151C]': !isDark
+    }"
+  >
     <!-- Left title -->
     <div class="font-semibold text-lg">
       <h2>{{ title }}</h2>

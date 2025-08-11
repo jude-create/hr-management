@@ -37,7 +37,7 @@ onUnmounted(() => {
   <div 
   v-if="visible" 
   
-  class="fixed inset-0 z-50 flex  justify-center  bg-[#A2A1A833] backdrop-blur-sm ">
+  class="fixed inset-0 z-100 flex  justify-center  bg-[#A2A1A833] backdrop-blur-sm ">
     <div 
     ref="modalRef"
      :class="{
@@ -48,7 +48,7 @@ onUnmounted(() => {
     <div class=" flex flex-col space-y-5 justify-center ">
 
      <RouterLink
-     to="/employees/profile"
+     to="/employee/profile"
      class="flex space-x-3  items-cente  cursor-pointer   hover:bg-[#A2A1A8]
       transition-colors ease-in-out duration-200r">
         <UserIcon class="h-6 w-6 text-gray-500 " />

@@ -5,12 +5,13 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="flex-1">
+  <div class="flex-1 ">
    
     
     
    
-      <RouterView />
+      <RouterView
+       />
    
   </div>
 </template>

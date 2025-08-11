@@ -116,13 +116,13 @@ const membersWithDepartment = computed(() => {
     <div class="pt-6">
       <!-- Header -->
       <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#655b9e] text-base">
-        <div class="w-[15%] px-4">Employee ID</div>
-        <div class="w-[25%] px-4">Employee Name</div>
-        <div class="w-[12%] px-4">Department</div>
-        <div class="w-[20%] px-4">Designation</div>
-        <div class="w-[10%] px-4">Type</div>
-        <div class="w-[10%] px-4">Status</div>
-        <div class="w-[10%] px-4">Action</div>
+        <div class="w-[15%] px-3">Employee ID</div>
+        <div class="w-[25%] px-3">Employee Name</div>
+        <div class="w-[15%] px-3">Department</div>
+        <div class="w-[20%] px-3">Designation</div>
+        <div class="w-[10%] px-3">Type</div>
+        <div class="w-[10%] px-3">Status</div>
+        <div class="w-[11%] px-3">Action</div>
       </div>
 
       <!-- Rows -->
@@ -133,12 +133,12 @@ const membersWithDepartment = computed(() => {
           class="flex py-3 items-center hover:bg-[#7152F310] transition-colors text-base"
         >
           <!-- Employee ID -->
-          <div class="w-[15%] px-4 font-light">
+          <div class="w-[15%] px-3 font-light">
             {{ member.id }}
           </div>
           
           <!-- Name + Avatar -->
-          <div class="w-[25%] px-4 flex items-center space-x-4">
+          <div class="w-[25%] px-3 flex items-center space-x-4">
             <img
               :src="member.avatar"
               alt="Employee"
@@ -148,22 +148,22 @@ const membersWithDepartment = computed(() => {
           </div>
 
           <!-- Department -->
-          <div class="w-[12%] px-4 font-light">
+          <div class="w-[12%] px-3 font-light">
             {{member.departmentName }}
           </div>
 
           <!-- Designation -->
-          <div class="w-[20%] px-4 font-light">
+          <div class="w-[20%] px-3 font-light">
             {{ member.title }}
           </div>
 
           <!-- Type -->
-          <div class="w-[10%] px-4 font-light">
+          <div class="w-[10%] px-3 font-light">
             {{ member.type || 'Full Time' }}
           </div>
 
           <!-- Status -->
-          <div class="w-[10%] px-4">
+          <div class="w-[10%] px-3">
             <span
               class="inline-flex items-center justify-center font-light text-sm px-2 py-2 rounded-lg"
               :style="{ color: member.statusColor || '#7152F3', backgroundColor: (member.statusColor || '#7152F3') + '1A' }"
@@ -173,8 +173,13 @@ const membersWithDepartment = computed(() => {
           </div>
 
           <!-- Actions -->
-          <div class="w-[10%] px-4 font-light flex items-center space-x-2">
-            <EyeIcon class="h-5 w-5 cursor-pointer" />
+          <div class="w-[11%] px-3 font-light flex items-center space-x-1">
+            <EyeIcon
+             class="h-5 w-5 cursor-pointer"
+            @click="$router.push({ name: 'employee-profile', params: { id: member.id } })"
+
+          />
+
             <PencilIcon class="h-5 w-5 cursor-pointer" />
             <TrashIcon class="h-5 w-5 cursor-pointer" />
           </div>

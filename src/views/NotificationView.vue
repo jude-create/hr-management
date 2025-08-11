@@ -97,7 +97,7 @@ const sortedNotifications = computed(() => {
     <main class="flex-1 space-y-6">
       <Header />
 
-      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-3 mt-7 shadow-sm mx-3 mb-8">
+      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-3 mt-25 shadow-sm mx-3 mb-8">
         <!-- Notification Controls -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4 border-b border-[#A2A1A81A]">
           <div class="flex items-center space-x-4">

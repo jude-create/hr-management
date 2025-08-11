@@ -5,10 +5,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-6">
-    <div v-for="item in info" :key="item.label">
-      <p class="text-gray-400 text-sm">{{ item.label }}</p>
-      <p class="font-medium">{{ item.value }}</p>
+  <div  class="grid grid-cols-2 gap-5 divide divide-y-2 divide-[#A2A1A81A] ">
+    <div
+     v-for="item in info" :key="item.label"
+     class="font-light pb-5"
+     >
+      <p class="text-[#A2A1A8]">{{ item.label }}</p>
+      <p class="pt-2">{{ item.value }}</p>
     </div>
   </div>
 </template>
