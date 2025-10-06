@@ -33,7 +33,7 @@ const navItems = ref([
   { name: 'Payroll', path: '/payroll', icon: CurrencyDollarIcon, iconSolid: CurrencyDollarIconSolid },
   { name: 'Jobs', path: '/jobs', icon: BriefcaseBusiness, iconSolid: BriefcaseBusinessSolid },
   { name: 'Candidates', path: '/candidates', icon: Users, iconSolid: UsersSolid },
-  { name: 'Leaves', path: '/leaves', icon: ClipboardList, iconSolid: ClipboardListSolid },
+  { name: 'Leaves', path: '/notifications', icon: ClipboardList, iconSolid: ClipboardListSolid },
   { name: 'Holidays', path: '/holidays', icon: CalendarDays, iconSolid: CalendarDaysSolid },
   { name: 'Settings', path: '/settings', icon: Settings, iconSolid: SettingsSolid }
 ])
