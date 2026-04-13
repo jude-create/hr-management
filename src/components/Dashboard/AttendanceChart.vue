@@ -6,7 +6,7 @@ import Chart from './Chart.vue';
 </script>
 
 <template>
-<main class="border border-[#A2A1A833] shadow-sm mt-6 p-4 w-full rounded-lg">
+<main class="border border-[#A2A1A833] shadow-sm mt-4 p-4 w-full rounded-lg">
     <div class="flex justify-between">
         <h1 class="pt-1 text-lg font-semibold">Attendance Overview</h1>
 

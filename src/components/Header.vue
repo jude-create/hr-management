@@ -35,10 +35,7 @@ const member = computed(() => {
     .find(m => m.id === memberId.value)
 })
 
-const departmentName = computed(() => {
-  const dep = departments.find(d => d.members.some(m => m.id === memberId.value))
-  return dep?.name || 'Unknown Department'
-})
+
 
 // Map of base routes to title/greeting
 const routeMeta = {
@@ -147,7 +144,7 @@ const navigateTo = (path) => {
 
 
 <template>
-  <section class="fixed  z-100 w-[78%] flex items-center px-3 pt-6 pb-3  "
+  <section class=" sticky top-0 w-full z-40 flex items-center px-3 pt-6 pb-3  "
   :class="{
       'bg-[#16151C] text-[#FFFFFF]': isDark,
       'bg-[#FFFFFF] text-[#16151C]': !isDark

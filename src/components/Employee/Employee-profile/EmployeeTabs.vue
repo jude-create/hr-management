@@ -36,7 +36,7 @@ watch(
 </script>
 
 <template>
-  <div class="border-b-2 border-[#A2A1A833] fixed z-50"
+  <div class="border-b-2 border-[#A2A1A833]"
   :class="{
       'bg-[#16151C] text-[#FFFFFF]': isDark,
       'bg-[#FFFFFF] text-[#16151C]': !isDark

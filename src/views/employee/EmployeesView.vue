@@ -11,17 +11,14 @@ import Navbar from '@/components/Navbar.vue'
 </script>
 
 <template>
-  <div class="flex h-full">
-    <!-- Sidebar -->
-    <aside class="hidden md:block md:w-64">
-      <Navbar />
-    </aside>
+  <div class="flex  min-h-screen">
+  
 
     <!-- Main content -->
-    <main class="flex-1 space-y-6">
-      <Header />
+    <main class="flex-1 ">
+     
 
-      <div class="mt-25 mb-5">
+      <div class="mt-4 mb-5">
         <EmployeeHome />
       </div>
 

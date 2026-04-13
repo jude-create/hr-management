@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import departments from '@/data/departments'
 import Navbar from '@/components/Navbar.vue'
@@ -23,22 +23,20 @@ const departmentName = computed(() => {
   const dep = departments.find(d => d.members.some(m => m.id === memberId))
   return dep?.name || 'Unknown Department'
 })
+
+
 </script>
 
 <template>
-  <div class="flex h-screen overflow-hidden">
-    <!-- Main app sidebar -->
-    <aside class="md:block md:w-64">
-      <Navbar />
-    </aside>
+  <div class="flex min-h-screen overflow-hidden">
+   
+    <div class="flex-1 ">
+     
 
-    <div class="flex-1 flex flex-col">
-      <Header />
-
-      <div class="flex-1 overflow-y-auto px-3 mt-20">
+      <div class="flex-1 overflow-y-auto px-3 mt-4">
         <div class="border border-[#A2A1A833] rounded-lg px-3 shadow-sm">
           <!-- Employee header -->
-          <div class="flex justify-between border-b-2 border-[#A2A1A833] pb-6 fixed z-100  w-[75%] pt-6"
+          <div class="flex justify-between border-b-2 border-[#A2A1A833] pb-6  w-full pt-5"
             :class="{ 'bg-[#16151C] text-white': isDark, 
             'bg-white text-[#16151C]': !isDark }">
             <div class="flex items-center space-x-4">
@@ -69,9 +67,9 @@ const departmentName = computed(() => {
           </div>
 
           <!-- Profile content area -->
-          <div class="flex gap-2 min-h-[400px] pt-34">
+          <div class="flex gap-2 min-h-[400px] pt-3">
             <!-- Employee profile sidebar -->
-             <div class="mb-4 fixed  "
+             <div class="mb-4   "
     :class="{
       'bg-[#16151C] text-[#FFFFFF]': isDark,
       'bg-[#FFFFFF] text-[#16151C]': !isDark
@@ -81,7 +79,7 @@ const departmentName = computed(() => {
     </div>
 
             <!-- Dynamic content area -->
-            <div class="flex-1 overflow-y-auto ml-56 mt-2">
+            <div class="flex-1 overflow-y-auto ml-3 mt-2">
               <RouterView :employee="member" :department="departmentName" />
             </div>
           </div>

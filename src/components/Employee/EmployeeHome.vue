@@ -80,7 +80,7 @@ const membersWithDepartment = computed(() => {
 </script>
 
 <template>
-  <div class="border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-6 shadow-sm mx-3 mb-8">
+  <div class="border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-2 shadow-sm mx-3 mb-8">
     <div class="flex justify-between">
       <!-- Search -->
       <div class="relative">

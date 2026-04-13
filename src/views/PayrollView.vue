@@ -4,22 +4,21 @@ import Navbar from '@/components/Navbar.vue';
 import Payroll from '@/components/Payroll.vue';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { CircleArrowOutUpLeft } from 'lucide-vue-next';
+import { ref } from 'vue';
 
-
+ 
 </script>
 
 <template>
-   <div class="flex h-full ">
+   <div class="flex min-h-screen ">
     <!-- Sidebar -->
-    <aside class="hidden md:block md:w-64  ">
-      <Navbar />
-    </aside>
+   
 
     <!-- Main content -->
-    <main class="flex-1  space-y-6">
-      <Header />
+    <main class="flex-1">
+    
 
-      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-25 shadow-sm mx-3 mb-8">
+      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
       <!-- Search -->
 
     <div class="flex justify-between">

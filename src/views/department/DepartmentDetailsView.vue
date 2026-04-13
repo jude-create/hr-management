@@ -1,10 +1,8 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import departments from '@/data/departments'
 import { AdjustmentsHorizontalIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/vue/24/outline'
-import Navbar from '@/components/Navbar.vue'
-import Header from '@/components/Header.vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ChevronLeftIcon, ChevronRightIcon, CirclePlus } from 'lucide-vue-next'
 import useTheme from '@/config/useTheme'
@@ -16,6 +14,11 @@ const taskModal = ref(false)
 function toggleModal() {
   taskModal.value = !taskModal.value
 }
+
+const setHeaderDepartment = inject('setHeaderDepartment');
+
+onMounted(() => setHeaderDepartment(department.value))
+onUnmounted(() => setHeaderDepartment(null))
 
 const route = useRoute()
 const departmentSlug = route.params.slug
@@ -63,22 +66,23 @@ const visiblePages = computed(() => {
     start = Math.max(end - maxVisible + 1, 1)
   }
   
-  return Array.from({length: end - start + 1}, (_, i) => start + i)
+  return Array.from({length: end - start + 1}, (_, i) => start + i);
+
+ 
 })
+
+ 
 </script>
 
 <template>
-  <div class="flex h-full">
-    <!-- Sidebar -->
-    <aside class="hidden md:block md:w-64">
-      <Navbar />
-    </aside>
-
+  <div class="flex min-h-screen">
+  
+  
     <!-- Main content -->
-    <main class="flex-1 space-y-6">
-      <Header :department="department" />
+    <main class="flex-1 ">
       
-      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-25 shadow-sm mx-3 mb-8">
+      
+      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
         <div class="flex justify-between">
         <!-- Search -->
         <div class="relative">
