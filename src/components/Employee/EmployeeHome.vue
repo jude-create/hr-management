@@ -83,7 +83,7 @@ const membersWithDepartment = computed(() => {
   <div class="border border-[#A2A1A833] rounded-lg px-3 pt-6 mt-2 shadow-sm mx-3 mb-8">
     <div class="flex justify-between">
       <!-- Search -->
-      <div class="relative">
+      <div class="lg:relative lg:block hidden">
         <MagnifyingGlassIcon class="h-6 w-6 absolute ml-2 mt-2" />
         <input
           type="text"
@@ -115,30 +115,30 @@ const membersWithDepartment = computed(() => {
 
     <div class="pt-6">
       <!-- Header -->
-      <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#655b9e] text-base">
-        <div class="w-[15%] px-3">Employee ID</div>
-        <div class="w-[25%] px-3">Employee Name</div>
-        <div class="w-[15%] px-3">Department</div>
-        <div class="w-[20%] px-3">Designation</div>
-        <div class="w-[10%] px-3">Type</div>
-        <div class="w-[10%] px-3">Status</div>
-        <div class="w-[11%] px-3">Action</div>
+      <div class=" border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#655b9e] text-base hidden lg:grid grid-cols-7 gap-x-6 overflow-x-auto">
+        <div class=" ">Employee ID</div>
+        <div class=" ">Employee Name</div>
+        <div class=" ">Department</div>
+        <div class=" ">Designation</div>
+        <div class=" ">Type</div>
+        <div class=" ">Status</div>
+        <div class=" ">Action</div>
       </div>
 
       <!-- Rows -->
-      <div class="divide-y-2 divide-[#A2A1A81A]">
+      <div class="divide-y-2 divide-[#A2A1A81A] hidden lg:block">
         <div
           v-for="member in membersWithDepartment"
           :key="member.id"
-          class="flex py-3 items-center hover:bg-[#7152F310] transition-colors text-base"
+          class="grid grid-cols-7 gap-x-6 py-3 items-center hover:bg-[#7152F310] transition-colors text-base"
         >
           <!-- Employee ID -->
-          <div class="w-[15%] px-3 font-light">
+          <div class="font-light">
             {{ member.id }}
           </div>
           
           <!-- Name + Avatar -->
-          <div class="w-[25%] px-3 flex items-center space-x-4">
+          <div class=" flex items-center space-x-1 ">
             <img
               :src="member.avatar"
               alt="Employee"
@@ -148,22 +148,22 @@ const membersWithDepartment = computed(() => {
           </div>
 
           <!-- Department -->
-          <div class="w-[12%] px-3 font-light">
+          <div class=" font-light">
             {{member.departmentName }}
           </div>
 
           <!-- Designation -->
-          <div class="w-[20%] px-3 font-light">
+          <div class=" font-light">
             {{ member.title }}
           </div>
 
           <!-- Type -->
-          <div class="w-[10%] px-3 font-light">
+          <div class=" font-light">
             {{ member.type || 'Full Time' }}
           </div>
 
           <!-- Status -->
-          <div class="w-[10%] px-3">
+          <div class="">
             <span
               class="inline-flex items-center justify-center font-light text-sm px-2 py-2 rounded-lg"
               :style="{ color: member.statusColor || '#7152F3', backgroundColor: (member.statusColor || '#7152F3') + '1A' }"
@@ -173,7 +173,7 @@ const membersWithDepartment = computed(() => {
           </div>
 
           <!-- Actions -->
-          <div class="w-[11%] px-3 font-light flex items-center space-x-1">
+          <div class=" font-light flex items-center space-x-1">
             <EyeIcon
              class="h-5 w-5 cursor-pointer"
             @click="$router.push({ name: 'employee-profile', params: { id: member.id } })"
@@ -182,6 +182,69 @@ const membersWithDepartment = computed(() => {
 
             <PencilIcon class="h-5 w-5 cursor-pointer" />
             <TrashIcon class="h-5 w-5 cursor-pointer" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- MOBILE CARDS — hidden on desktop -->
+    <div class="lg:hidden divide-y-2 divide-[#A2A1A81A]">
+      <div
+        v-for="member in membersWithDepartment"
+        :key="member.id"
+        class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
+      >
+        <!-- Top row: avatar + name + status badge -->
+
+        <div class=" font-light pb-3 text-[#A2A1A8]">
+            {{ member.id }}
+          </div>
+        <div class="flex items-center justify-between mb-2">
+          
+          
+          <div class="flex items-center space-x-2">
+            <img :src="member.avatar" alt="Employee" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+            <div>
+              <p class="text-sm font-medium">{{ member.name }}</p>
+              <p class="text-xs text-[#A2A1A8] font-light">{{ member.title }}</p>
+            </div>
+          </div>
+
+           <!-- Actions -->
+          <div class=" px-3 font-light flex items-center space-x-1">
+            <EyeIcon
+             class="h-5 w-5 cursor-pointer"
+            @click="$router.push({ name: 'employee-profile', params: { id: member.id } })"
+
+          />
+
+            <PencilIcon class="h-5 w-5 cursor-pointer" />
+            <TrashIcon class="h-5 w-5 cursor-pointer" />
+          </div>
+         
+        </div>
+
+        <!-- Bottom row: type + check-in -->
+        <div class="flex items-center justify-between pt-3 px-2">
+           <!-- Department -->
+          <div class="  font-bold text-[#A2A1A8]">
+            {{member.departmentName }}
+          </div>
+
+            <!-- Type -->
+          <div class=" text-center font-light text-[#A2A1A8]">
+            {{ member.type || 'Full Time' }}
+          </div>
+
+           <!-- Status -->
+          <div class="w-fit flex items-end text-[#A2A1A8]">
+            <span
+              class="inline-flex items-center justify-center font-light text-sm px-2 py-2 rounded-lg"
+              :style="{ color: member.statusColor || '#7152F3', backgroundColor: (member.statusColor || '#7152F3') + '1A' }"
+            >
+              {{ member.status || 'Active' }}
+            </span>
           </div>
         </div>
       </div>

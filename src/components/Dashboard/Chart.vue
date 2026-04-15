@@ -108,7 +108,7 @@ const chartOptions = {
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto h-[315px] mt-8 ">
+  <div class="max-w-2xl mx-auto h-[180px] md:h-[315px] mt-8 ">
     <Bar :data="chartData" :options="chartOptions" />
   </div>
 </template>

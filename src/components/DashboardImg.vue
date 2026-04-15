@@ -11,14 +11,14 @@ const dashboardImage = computed(() => (isDark.value ? dashboardDark : dashboardL
 </script>
 
 <template>
-  <section class=" rounded-2xl w-3/6   flex flex-col justify-center items-center"
-    :class="{
-      'bg-[#7152F30D]': !isDark,
-      'bg-[#F8F6FE]': isDark
-    }">
-    <!-- Dashboard Image -->
-    <div class="flex items-center justify-center">
-      <img :src="dashboardImage" alt="Dashboard" class="w-[450px] h-[500px]  ml-36" />
-    </div>
+  <section
+    class="rounded-2xl w-full h-full flex flex-col justify-center items-center"
+    :class="{ 'bg-[#7152F30D]': !isDark, 'bg-[#F8F6FE]': isDark }"
+  >
+    <img
+      :src="dashboardImage"
+      alt="Dashboard"
+      class="w-full max-w-[450px] h-auto object-contain"
+    />
   </section>
 </template>

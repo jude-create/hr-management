@@ -33,10 +33,10 @@ const departmentName = computed(() => {
     <div class="flex-1 ">
      
 
-      <div class="flex-1 overflow-y-auto px-3 mt-4">
+      <div class="flex-1 md:overflow-y-auto px-3 mt-4 overflow-hidden">
         <div class="border border-[#A2A1A833] rounded-lg px-3 shadow-sm">
           <!-- Employee header -->
-          <div class="flex justify-between border-b-2 border-[#A2A1A833] pb-6  w-full pt-5"
+          <div class="md:flex md:justify-between border-b-2 border-[#A2A1A833] pb-6   w-full pt-5"
             :class="{ 'bg-[#16151C] text-white': isDark, 
             'bg-white text-[#16151C]': !isDark }">
             <div class="flex items-center space-x-4">
@@ -54,7 +54,7 @@ const departmentName = computed(() => {
               </div>
             </div>
           
-             <div class="flex items-end">
+             <div class="flex mt-3 items-center justify-end">
             <RouterLink
             to="/employees/add-new-employee"
               class="flex items-center space-x-2 border border-[#7152F3] bg-[#7152F3] text-white rounded-lg p-3 shadow-sm hover:bg-[#5b41cc] transition"
@@ -67,7 +67,7 @@ const departmentName = computed(() => {
           </div>
 
           <!-- Profile content area -->
-          <div class="flex gap-2 min-h-[400px] pt-3">
+          <div class="md:flex gap-2 min-h-[400px] pt-3">
             <!-- Employee profile sidebar -->
              <div class="mb-4   "
     :class="{
@@ -79,7 +79,7 @@ const departmentName = computed(() => {
     </div>
 
             <!-- Dynamic content area -->
-            <div class="flex-1 overflow-y-auto ml-3 mt-2">
+            <div class="flex-1 md:overflow-y-auto md:ml-3 mt-2">
               <RouterView :employee="member" :department="departmentName" />
             </div>
           </div>

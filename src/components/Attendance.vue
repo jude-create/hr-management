@@ -247,10 +247,10 @@ defineProps({
 
 
 <template>
-  <div class="overflow-x-auto space-y-4">
-    <!-- Table -->
-    <div>
-      <!-- Table Header -->
+  <div class="space-y-4">
+
+    <!-- DESKTOP TABLE — hidden on mobile -->
+    <div class="hidden md:block overflow-x-auto">
       <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
         <div class="w-[32%] px-4">Employee Name</div>
         <div class="w-[25%] px-4">Designation</div>
@@ -258,12 +258,10 @@ defineProps({
         <div class="w-[18%] px-4">Check In Time</div>
         <div class="w-[18%] px-4">Status</div>
       </div>
-
-      <!-- Table Rows -->
-      <div class="divide-y-2 divide-[#A2A1A81A] ">
+      <div class="divide-y-2 divide-[#A2A1A81A]">
         <div
-         v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
-        :key="index"
+          v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
+          :key="index"
           class="flex py-2 items-center hover:bg-[#7152F310] transition-colors text-base"
         >
           <div class="w-[32%] px-4 flex items-center space-x-4">
@@ -285,65 +283,82 @@ defineProps({
       </div>
     </div>
 
-   <!-- Pagination Controls (only visible if showPagination is true) -->
-
-  <div
-  v-if="showPagination"
-  class="flex justify-between items-center mt-4 px-2 flex-wrap gap-4"
->
-  <!-- Rows per page selector -->
-  <div class="space-x-4 flex items-center">
-    <label class="text-sm text-[#A2A1A8]">Showing</label>
-    <select v-model="perPage" class="border rounded-md px-3 py-1 text-sm"
-      :class="{
-      'bg-[#16151C] text-[#FFFFFF]': isDark,
-      'bg-[#FFFFFF] text-[#16151C]': !isDark
-    }"
-    >
-      <option :value="5">5</option>
-      <option :value="10">10</option>
-      <option :value="15">15</option>
-    </select>
-  </div>
-
-  <!-- Pagination buttons -->
-  <div class="flex items-center space-x-4">
-    <div class="text-sm text-gray-600">{{ showingRange }}</div>
-    
-    <!-- Prev -->
-    <button
-      :disabled="currentPage === 1"
-      @click="currentPage--"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
-    >
-      <ChevronLeftIcon class="h-6 w-6 inline-block" />
-    </button>
-
-    <!-- Dynamic Page Numbers -->
-    <div class="flex space-x-2">
-      <button
-        v-for="page in totalPages"
-        :key="page"
-        @click="currentPage = page"
-        :class="[
-          'px-3 py-1  text-base',
-          currentPage === page ? 'border border-[#7152F3] text-[#7152F3] font-semibold rounded-lg' : 'hover:bg-gray-100'
-        ]"
+    <!-- MOBILE CARDS — hidden on desktop -->
+    <div class="md:hidden divide-y-2 divide-[#A2A1A81A]">
+      <div
+        v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
+        :key="'m-' + index"
+        class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
       >
-        {{ page }}
-      </button>
+        <!-- Top row: avatar + name + status badge -->
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center space-x-3">
+            <img :src="employee.image" alt="Employee" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+            <div>
+              <p class="text-sm font-medium">{{ employee.name }}</p>
+              <p class="text-xs text-[#A2A1A8] font-light">{{ employee.designation }}</p>
+            </div>
+          </div>
+          <span
+            class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg flex-shrink-0"
+            :style="{ color: employee.statusColor, backgroundColor: `${employee.statusColor}1A` }"
+          >
+            {{ employee.status }}
+          </span>
+        </div>
+
+        <!-- Bottom row: type + check-in -->
+        <div class="flex items-center space-x-4 pl-13 ml-13">
+          <div class="flex items-center space-x-1 ml-13">
+            <svg class="h-3.5 w-3.5 text-[#A2A1A8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            </svg>
+            <span class="text-xs text-[#A2A1A8] font-light">{{ employee.type }}</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg class="h-3.5 w-3.5 text-[#A2A1A8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span class="text-xs text-[#A2A1A8] font-light">{{ employee.checkIn }}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Next -->
-    <button
-      :disabled="currentPage === totalPages || totalPages === 0"
-      @click="currentPage++"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
+    <!-- PAGINATION — same for both, just make it wrap nicely -->
+    <div
+      v-if="showPagination"
+      class="flex flex-col sm:flex-row justify-between items-center mt-4 px-2 gap-3"
     >
-      <ChevronRightIcon class="h-6 w-6 inline-block" />
-    </button>
-  </div>
-</div>
+      <div class="flex items-center space-x-2">
+        <label class="text-sm text-[#A2A1A8]">Showing</label>
+        <select
+          v-model="perPage"
+          class="border rounded-md px-3 py-1 text-sm"
+          :class="{ 'bg-[#16151C] text-[#FFFFFF]': isDark, 'bg-[#FFFFFF] text-[#16151C]': !isDark }"
+        >
+          <option :value="5">5</option>
+          <option :value="10">10</option>
+          <option :value="15">15</option>
+        </select>
+      </div>
+
+      <div class="flex items-center space-x-3 flex-wrap justify-center gap-y-2">
+        <div class="text-sm text-gray-600">{{ showingRange }}</div>
+        <button :disabled="currentPage === 1" @click="currentPage--" class="px-2 py-1 rounded hover:bg-gray-100 disabled:opacity-50">
+          <ChevronLeftIcon class="h-5 w-5" />
+        </button>
+        <div class="flex space-x-1">
+          <button
+            v-for="page in totalPages" :key="page" @click="currentPage = page"
+            :class="['px-3 py-1 text-sm rounded-lg', currentPage === page ? 'border border-[#7152F3] text-[#7152F3] font-semibold' : 'hover:bg-gray-100']"
+          >{{ page }}</button>
+        </div>
+        <button :disabled="currentPage === totalPages || totalPages === 0" @click="currentPage++" class="px-2 py-1 rounded hover:bg-gray-100 disabled:opacity-50">
+          <ChevronRightIcon class="h-5 w-5" />
+        </button>
+      </div>
+    </div>
 
   </div>
-</template> 
+</template>

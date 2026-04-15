@@ -13,7 +13,7 @@ import { ref } from 'vue';
    <div class="flex min-h-screen ">
   
     <!-- Main content -->
-    <main class="flex-1  ">
+    <main class="flex-1 overflow-hidden ">
       
 
       <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">

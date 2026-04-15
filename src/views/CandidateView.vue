@@ -18,7 +18,7 @@ import { ref } from 'vue';
 
       <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
       <!-- Search -->
-     <div class=" relative ">
+     <div class=" relative hidden md:block">
         <MagnifyingGlassIcon class="h-6 w-6 absolute ml-2 mt-2" />
        <input
        type="text"
@@ -28,7 +28,7 @@ import { ref } from 'vue';
       />
     </div>
      
-    <div class="mt-8 mb-5">
+    <div class="md:mt-8 mb-5">
       <Candidate />
     </div>
       

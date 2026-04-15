@@ -15,14 +15,14 @@ import Navbar from '@/components/Navbar.vue'
    
 
     <!-- Main content -->
-    <main class="flex-1 min-w-0 ">
+    <main class="flex-1 md:min-w-0 overflow-hidden ">
       
-      <div class="flex flex-wrap lg:flex-nowrap gap-y-6 gap-x-3 px-3 ">
-        <div class="flex flex-col flex-[2]">
+      <div class="md:flex md:flex-wrap lg:flex-nowrap  md:gap-x-4 md:px-3 px-4 ">
+        <div class="flex flex-col md:flex-[2]">
           <Company />
           <AttendanceChart />
         </div>
-        <div class="flex-[1]">
+        <div>
           <Calendar />
         </div>
       </div>

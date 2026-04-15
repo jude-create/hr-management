@@ -215,7 +215,7 @@ watch([selectedCandidates, currentPage, perPage], () => {
     <div class="overflow-x-auto">
       <div class="inline-block min-w-full">
         <!-- Table Header -->
-        <div class="grid grid-cols-15 border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] items-center">
+        <div class="lg:grid hidden grid-cols-15 border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] items-center  ">
           <div class="col-span-1 px-2 flex items-center">
            <input
              type="checkbox"
@@ -234,7 +234,7 @@ watch([selectedCandidates, currentPage, perPage], () => {
         </div>
 
         <!-- Table Rows -->
-        <div class="divide-y-2 divide-[#A2A1A81A] ">
+        <div class="divide-y-2 divide-[#A2A1A81A] hidden lg:block ">
           <div
             v-for="(candidate, index) in currentPageCandidates"
             :key="index"
@@ -286,6 +286,55 @@ watch([selectedCandidates, currentPage, perPage], () => {
             </div>
           </div>
         </div>
+        <!-- MOBILE CARDS — hidden on desktop -->
+<div class="lg:hidden divide-y-2 divide-[#A2A1A81A]">
+  <div
+    v-for="(candidate, index) in currentPageCandidates"
+    :key="'m-' + index"
+    class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
+  >
+    <!-- Top row -->
+    <div class="flex items-start justify-between">
+      <!-- Left: checkbox + avatar + name -->
+      <div class="flex items-start space-x-3">
+        <input
+          type="checkbox"
+          :checked="selectedCandidates.some(c => c.name === candidate.name)"
+          @change="toggleCandidateSelection(candidate)"
+          class="mt-1 h-4 w-4 rounded border-gray-300 text-[#7152F3]"
+        />
+
+        <img
+          :src="candidate.image"
+          class="w-10 h-10 rounded-full object-cover"
+        />
+
+        <div>
+          <p class="text-sm font-medium">{{ candidate.name }}</p>
+          <p class="text-xs text-[#A2A1A8]">{{ candidate.appliedFor }}</p>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <span
+        class="text-xs px-3 py-1 rounded-lg whitespace-nowrap"
+        :style="{
+          color: candidate.statusColor,
+          backgroundColor: `${candidate.statusColor}1A`
+        }"
+      >
+        {{ candidate.status }}
+      </span>
+    </div>
+
+    <!-- Bottom details -->
+    <div class="mt-3 space-y-1 text-xs text-[#A2A1A8] pl-9">
+      <p><span class="font-medium text-gray-500">Date:</span> {{ candidate.appliedDate }}</p>
+      <p class="truncate"><span class="font-medium text-gray-500">Email:</span> {{ candidate.email }}</p>
+      <p><span class="font-medium text-gray-500">Phone:</span> {{ candidate.number }}</p>
+    </div>
+  </div>
+</div>
       </div>
     </div>
 

@@ -75,17 +75,17 @@ const visiblePages = computed(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen">
+  <div class="flex min-h-screen "> 
   
   
     <!-- Main content -->
-    <main class="flex-1 ">
+    <main class="flex-1 overflow-hidden">
       
       
-      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
+      <div class="border border-[#A2A1A833] rounded-lg md:px-3 pt-5 mt-4 shadow-sm mx-3 md:mb-9">
         <div class="flex justify-between">
         <!-- Search -->
-        <div class="relative">
+        <div class="relative hidden md:block">
           <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-2" />
           <input
             type="text"
@@ -128,7 +128,7 @@ const visiblePages = computed(() => {
         </div>
 
 
-        <div class="pt-8">
+        <div class="pt-8 hidden md:block">
          
           <!-- Header -->
           <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
@@ -191,6 +191,62 @@ const visiblePages = computed(() => {
           </div>
         </div>
 
+       <!-- MOBILE CARDS — hidden on desktop -->
+    <div class="md:hidden divide-y-2 divide-[#A2A1A81A] ">
+      <div
+        v-for="member in paginatedMembers"
+        :key=" member.id"
+        class="py-3 px-3 hover:bg-[#7152F310] transition-colors"
+      >
+        <!-- Top row: date + status badge -->
+        <div class="flex items-center justify-between mb-2">
+          
+            <p class="font-light">{{ member.id }}</p>
+           <span
+                  class="inline-flex items-center justify-center font-light text-sm px-2 py-2 rounded-lg"
+                  :style="{ color: member.statusColor || '#7152F3', backgroundColor: (member.statusColor || '#7152F3') + '1A' }"
+                >
+                  {{ member.status || 'Active' }}
+                </span>
+        </div>
+
+        <!-- Info grid: 2x2 -->
+        <div class="">
+          <div class=" flex items-center  space-x-4">
+                <img
+                  :src="member.avatar"
+                  alt="Employee"
+                  class="w-10 h-10 rounded-full object-cover"
+                />
+                <div>
+                <p class="font-medium ">{{ member.name }}</p>
+                <p class="text-sm">{{ member.title }}</p>
+                </div>
+              </div>
+
+          
+            
+             <div class=" px-3 font-light  flex items-center justify-end space-x-2">
+                <EyeIcon class="h-5 w-5  cursor-pointer" />
+                <PencilIcon class="h-5 w-5  cursor-pointer" />
+                <TrashIcon class="h-5 w-5  cursor-pointer" />
+              </div>
+          
+
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[#A2A1A8] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <div>
+              
+              <p class="text-sm font-medium"> {{ member.type || 'Full Time' }}</p>
+            </div>
+          </div>
+
+          
+          </div>
+        </div>
+      </div>
         <!-- Pagination -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-4 px-2 py-4">
           <!-- Rows per page selector -->

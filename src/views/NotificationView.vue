@@ -97,7 +97,7 @@ const sortedNotifications = computed(() => {
 
       <div class="border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
         <!-- Notification Controls -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4 border-b border-[#A2A1A81A]">
+        <div class="flex flex-row items-center justify-between gap-4 py-4 border-b border-[#A2A1A81A]">
           <div class="flex items-center space-x-4">
             <h2 class="text-lg font-semibold">Notifications</h2>
            
@@ -165,16 +165,16 @@ const sortedNotifications = computed(() => {
                 />
               </div>
               <div>
-                <h2 class="font-semibold">
+                <h2 class="font-semibold text-sm md:text-base">
                   {{ notification.title }}
                   <span v-if="!notification.read" class="ml-2 inline-block w-2 h-2 rounded-full bg-[#7152F3]"></span>
                 </h2>
-                <p class="font-light text-[#A2A1A8]">{{ notification.description }}</p>
+                <p class="font-light text-sm md:text-base text-[#A2A1A8]">{{ notification.description }}</p>
               </div>
             </div>
 
             <div class="flex flex-col items-end">
-              <p class="font-light text-[#A2A1A8]">{{ notification.time }}</p>
+              <p class="font-light text-xs md:text-sm text-[#A2A1A8]">{{ notification.time }}</p>
             </div>
           </div>
         </div>

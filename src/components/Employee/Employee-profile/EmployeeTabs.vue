@@ -18,6 +18,13 @@ const tabs = [
   { key: 'account', label: 'Account Access', outline: KeyOutline, solid: KeySolid }
 ]
 
+const tabs2 = [
+  { key: 'personal', label: 'Personal ',  outline: UserOutline, solid: UserSolid },
+  { key: 'professional', label: 'Professional', outline: BriefcaseOutline, solid: BriefcaseSolid },
+  { key: 'documents', label: 'Documents', outline: DocumentOutline, solid: DocumentSolid },
+  { key: 'account', label: ' Access', outline: KeyOutline, solid: KeySolid }
+]
+
 // Load the last tab on mount
 onMounted(() => {
   const savedTab = localStorage.getItem('activeTab')
@@ -42,19 +49,21 @@ watch(
       'bg-[#FFFFFF] text-[#16151C]': !isDark
     }"
   >
-    <div class="flex space-x-3   ">
+    <div class="flex  space-x-6 ">
       <button 
-        v-for="tab in tabs" 
+        v-for="tab in tabs2" 
         :key="tab.key"
         @click="emit('update:activeTab', tab.key)"
-        class="py-3   transition-colors duration-200"
+        class="md:py-3 py-1  transition-colors duration-200"
         :class="activeTab === tab.key 
           ? 'border-b-2 border-[#7152F3] text-[#7152F3] font-semibold' 
           : 'border-[#A2A1A833] hover:text-[#7152F3]'"
       >
-        <component :is="activeTab === tab.key ? tab.solid : tab.outline" class="w-5 h-5 inline-block" />
+        <component :is="activeTab === tab.key ? tab.solid : tab.outline" class="w-5 h-5 md:inline-block hidden" />
         {{ tab.label }}
       </button>
     </div>
+
+    
   </div>
 </template>

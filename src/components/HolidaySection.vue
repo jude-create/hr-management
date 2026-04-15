@@ -1,6 +1,5 @@
 <script setup>
 import { defineProps, computed } from 'vue'
-import {BriefcaseBusiness, MapPin} from 'lucide-vue-next'
 
 const props = defineProps({
   holidays: Array,
@@ -25,29 +24,29 @@ const isUpcoming = (dateString) => {
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full">
           <!-- Table Header -->
-          <div class="grid grid-cols-11 border-b-2 border-gray-200 pb-3 font-light text-[#A2A1A8] items-center pt-6">
-            <div class="col-span-3">Date</div>
-            <div class="col-span-2">Day</div>
-            <div class="col-span-3">Holiday Name</div>
+          <div class="grid md:grid-cols-5 grid-cols-3  border-b-2 border-gray-200 pb-3 font-light text-[#A2A1A8] items-center pt-6">
+            <div class="md:col-span-2 col-span-1">Date</div>
+            <div class=" col-span-1">Day</div>
+            <div class="md:col-span-2 col-span-1">Holiday Name</div>
           </div>
 
           <div class="divide-y divide-gray-100">
-            <div v-for="holiday in holidays" :key="holiday.id" class="grid grid-cols-11 items-center py-4 font-light">
-              <div class="col-span-3 flex items-center space-x-2">
+            <div v-for="holiday in holidays" :key="holiday.id" class="grid md:grid-cols-5 grid-cols-3 items-center py-4 font-light">
+              <div class="md:col-span-2 col-span-1 flex items-center space-x-2">
                 <!-- Updated border color conditional -->
                 <div 
                   :class="{
                     'border-[#7152F3] bg-[#7152F3]': isUpcoming(holiday.date),
                     'border-[#A2A1A81A] bg-[#A2A1A81A]': !isUpcoming(holiday.date)
                   }" 
-                  class="col-span-3 border-2  h-10 w-1 rounded-xl" 
+                  class="border-2  h-10 w-1 rounded-xl" 
                 ></div>
-                <div class="flex items-center space-x-2"> 
+                <div class="flex items-center text-sm md:text-base space-x-2"> 
                   <span>{{ holiday.date }}</span>
                 </div>
               </div>
-              <div class="col-span-2">{{ holiday.day }}</div>
-              <div class="col-span-3 flex items-center space-x-2">
+              <div class="col-span-1 text-sm md:text-base">{{ holiday.day }}</div>
+              <div class="md:col-span-2 col-span-1 text-sm md:text-base flex items-center space-x-2">
                 <span>{{ holiday.holiday }}</span>
               </div>
             </div>

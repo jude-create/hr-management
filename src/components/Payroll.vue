@@ -212,7 +212,7 @@ defineProps({
 <template>
   <div class="overflow-x-auto space-y-4">
     <!-- Table -->
-    <div>
+    <div class="hidden md:block">
       <!-- Table Header -->
       <div class="flex border-b-2 border-gray-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
         <div class="w-[30%] px-4">Employee Name</div>
@@ -248,6 +248,46 @@ defineProps({
       </div>
     </div>
 
+     <!-- MOBILE CARDS — hidden on desktop -->
+    <div class="md:hidden divide-y-2 divide-[#A2A1A81A]">
+      <div
+        v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
+        :key="index"
+        class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
+      >
+        <!-- Top row: avatar + name + status badge -->
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center space-x-3">
+            <img :src="employee.image" alt="Employee" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+            <div>
+              <p class="text-sm font-medium">{{ employee.name }}</p>
+             <div class="flex items-center space-x-4 mt-1">
+              <p class=" font-light text-[#A2A1A8] text-center">Salary -</p>
+              <p class="text-sm text-[#A2A1A8] font-bold">{{ employee.salary }}</p>
+             </div>
+            </div>
+          </div>
+          <span
+            class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg flex-shrink-0"
+            :style="{ color: employee.statusColor, backgroundColor: `${employee.statusColor}1A` }"
+          >
+            {{ employee.status }}
+          </span>
+        </div>
+
+        <!-- Bottom row: type + check-in -->
+        <div class="flex items-center space-x-12 pl-13 ml-13">
+          <div >
+           <p class="text-[#A2A1A8] font-light text-center">CTC</p>
+            <span class="text-sm text-[#A2A1A8] font-bold">{{ employee.ctc }}</span>
+          </div>
+          <div >
+            <p class="text-[#A2A1A8] font-light text-end">Deduction</p>
+            <span class="text-sm text-[#A2A1A8] pl-5 font-bold">{{ employee.deduction }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
    <!-- Pagination Controls (only visible if showPagination is true) -->
 
   <div

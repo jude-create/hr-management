@@ -4,11 +4,13 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
+import { createPinia } from 'pinia'
 // import './assets/styles/scrollbar.css'
 
 
 const app = createApp(App)
 
 app.use(router)
-app.use(VCalendar, {}) // must come before mount
+app.use(VCalendar, {}) 
+app.use(createPinia())
 app.mount('#app')

@@ -38,13 +38,6 @@ body {
   scrollbar-color: #7152F3 transparent;
 }
 
-@media (max-width: 1024px) {
-  #app {
-    transform: scale(calc(100vw / 1024));
-    transform-origin: top left;
-    width: 1024px;
-  }
-}
 
 
 

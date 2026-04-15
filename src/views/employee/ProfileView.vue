@@ -55,12 +55,12 @@ const accountAccess = [
 ]
 </script>
 
-<template>
+<template >
    <div>
     <EmployeeTabs v-model:activeTab="activeTab" />
   </div>
 
-  <div class="px-6 pb-6 pt-20 overflow-y-auto">
+  <div class="px-6 pb-6 md:pt-10 pt-7 overflow-hidden">
     <PersonalInfo v-if="activeTab === 'personal'" :info="personalInfo" />
     <ProfessionalInfo v-else-if="activeTab === 'professional'" :info="professionalInfo" />
     <DocumentsSection v-else-if="activeTab === 'documents'" />

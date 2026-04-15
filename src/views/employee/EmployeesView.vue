@@ -15,7 +15,7 @@ import Navbar from '@/components/Navbar.vue'
   
 
     <!-- Main content -->
-    <main class="flex-1 ">
+    <main class="flex-1 overflow-hidden ">
      
 
       <div class="mt-4 mb-5">

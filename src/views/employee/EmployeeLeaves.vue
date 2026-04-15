@@ -68,7 +68,7 @@ const employee = [
 <template>
   <div class="overflow-x-auto space-y-4 mt-4">
     <!-- Table -->
-    <div>
+    <div class="hidden md:block">
       <!-- Table Header -->
       <div class="flex border-b-2 border-[#A2A1A81A]  font-light text-[#A2A1A8] text-base pb-2">
         <div class="w-[22%] px-3">Date</div>
@@ -103,7 +103,56 @@ const employee = [
         </div>
       </div>
     </div>
+    
 
+      <!-- MOBILE CARDS — hidden on desktop -->
+      <div class="md:hidden divide-y-2 divide-[#A2A1A81A] mb-7">
+      <div
+        v-for="(emp, index) in employee"
+        :key=" index"
+        class="py-3 px-1 hover:bg-[#7152F310] transition-colors"
+      >
+        <!-- Top row: date + status badge -->
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-sm font-medium">{{ emp.date }}</p>
+          <span
+            class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg flex-shrink-0"
+            :style="{ color: emp.statusColor, backgroundColor: `${emp.statusColor}1A` }"
+          >{{ emp.status }}</span>
+        </div>
+
+        <!-- Info grid: 2x2 -->
+        <div class="grid grid-cols-2 gap-y-2 gap-x-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-[#A2A1A8] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <div>
+              <p class="text-[10px] text-[#A2A1A8]">Duration</p>
+              <p class="text-sm font-medium">{{ emp.duration }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+           
+            <div>
+              <p class="text-sm text-[#A2A1A8]">Reporting Manager</p>
+              <p class="text-sm font-medium">{{ emp.rManager }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 px-5">
+           
+            <div>
+              <p class="text-xs font-medium ">{{ emp.days }} days</p>
+            </div>
+          </div>
+
+        
+        </div>
+      </div>
+      </div>
+    
    <!-- Pagination Controls (only visible if showPagination is true) -->
 
   

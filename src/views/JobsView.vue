@@ -35,66 +35,58 @@ const tasks = ref({
 </script>
 
 <template>
-   <div class="flex min-h-screen ">
-   
+  <div class="flex min-h-screen">
+    <main class="flex-1 min-w-0">
+      <div class="border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9">
 
-    <!-- Main content -->
-    <main class="flex-1">
-      
+        <!-- Toolbar -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:justify-between sm:items-center mb-1">
+          <div class="relative w-full sm:w-80 hidden md:block">
+            <MagnifyingGlassIcon class="h-5 w-5 absolute left-2 top-3 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search..."
+              class="pl-9 pr-2 py-2.5 w-full bg-transparent placeholder:text-[#8A8D91] text-base border border-gray-300 rounded-lg
+                focus:outline-none focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
+            />
+          </div>
+          <button
+            @click="toggleModal"
+            class="flex items-center justify-center space-x-2 border border-[#7152F3] bg-[#7152F3]
+              text-white rounded-lg px-4 py-2.5 font-light shadow-sm cursor-pointer hover:bg-[#5b41cc]
+              transition-colors ease-in-out duration-200 w-full sm:w-auto"
+          >
+            <CirclePlus class="h-5 w-5" />
+            <span>Add New Job</span>
+          </button>
+        </div>
 
-      <div class=" border border-[#A2A1A833] rounded-lg px-3 pt-5 mt-4 shadow-sm mx-3 mb-9 ">
-      <!-- Search -->
+        <!-- Job columns — stack on mobile, side by side on desktop -->
+        <div class="flex flex-col lg:flex-row lg:space-x-4 w-full mt-3">
+          <JobSection 
+          title="Active Jobs" 
+          :tasks="tasks.active" 
+          color="#FF304F" 
+          section-key="active" 
+          @open-modal="toggleModal" />
 
-    <div class="flex justify-between ">
-       <div class=" relative ">
-        <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-3" />
-       <input
-       type="text"
-        placeholder="Search..."
-       class="pl-10 pr-2 px-2 py-3 w-80 bg-transparent placeholder:text-[#8A8D91] text-base border border-gray-300 rounded-lg 
-         focus:outline-none focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
-      />
-    </div>
+          <JobSection 
+          title="Inactive Jobs" 
+          :tasks="tasks.inactive" 
+          color="#D89E07" 
+          section-key="inactive" 
+          @open-modal="toggleModal" />
 
-    <button v-on:click="toggleModal" class="flex space-x-3 border border-[#7152F3] bg-[#7152F3]
-     text-[#FFFFFF] rounded-lg p-3 font-light shadow-sm cursor-pointer hover:bg-[#5b41cc]
-      transition-colors ease-in-out duration-200">
-        <CirclePlus />
+          <JobSection 
+          title="Completed Jobs" 
+          :tasks="tasks.completed" 
+          color="#03A12F" 
+          section-key="completed" 
+          @open-modal="toggleModal" />
+        </div>
 
-        <div>
-          Add New Job
-       </div>
-    </button>
-    </div>
-    
-     
-        <div class="flex space-x-12 w-full mt-3">
-      <JobSection
-        title="Active Jobs"
-        :tasks="tasks.active"
-        color="#FF304F"
-        section-key="active"
-        @open-modal="toggleModal"
-      />
-      <JobSection
-        title="Inactive Jobs"
-        :tasks="tasks.inactive"
-        color="#D89E07"
-        section-key="inactive" 
-        @open-modal="toggleModal"
-      />
-      <JobSection
-        title="Completed Jobs"
-        :tasks="tasks.completed"
-        color="#03A12F"
-        section-key="completed"
-        @open-modal="toggleModal"
-      />
-    </div>
-
-    <JobModal :visible="taskModal" @close="toggleModal" />
-  </div>
-
+        <JobModal :visible="taskModal" @close="toggleModal" />
+      </div>
     </main>
-    </div>
+  </div>
 </template>

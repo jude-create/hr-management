@@ -14,55 +14,54 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="w-full sm:w-1/3 flex flex-col gap-2 border border-[#A2A1A833] px-3 py-6 rounded-lg my-6 mx-2">
-    <div class="flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: color }" />
-        <p class="font-semibold">{{ title }} </p>
-      </div>
+  <div class="w-full lg:w-1/3 flex flex-col gap-2 border border-[#A2A1A833] px-3 py-5 rounded-lg my-3">
+    
+    <!-- Section header -->
+    <div class="flex items-center gap-2 mb-2">
+      <div class="w-3 h-3 rounded-full flex-shrink-0" :style="{ backgroundColor: color }" />
+      <p class="font-semibold">{{ title }}</p>
+      <span class="ml-auto text-xs text-[#A2A1A8] font-light">{{ tasks.length }} jobs</span>
     </div>
 
-    <div class="space-y-6 min-h-[170px] ">
+    <!-- Cards -->
+    <div class="space-y-4 min-h-[100px]">
       <div
         v-for="task in tasks"
         :key="task.id"
-        class="bg-[#A2A1A80D] p-2 rounded-md shadow hover:shadow-md transition-all "
+        class="bg-[#A2A1A80D] p-3 rounded-lg hover:shadow-md transition-all"
       >
-    
-      <div class="flex items-center space-x-2">
-        <div class="bg-[#A2A1A80D] p-3 rounded-lg">
-           <BriefcaseBusiness class="h-6 w-6 text-gray-500" />
-        </div>
-       
-      <div>
-         <p class="font-semibold mt-2">{{ task.title }}</p>
-        <p class="text-sm font-light text-[#A2A1A8]">{{ task.description }}</p>
-
-      </div>
-      </div>  
-      
-      <!-- roles and job type -->
-    <div class="flex flex-wrap gap-2 mt-4 font-light">
-      <div
-        v-for="(role, index) in task.roles"
-       :key="index"
-        class="bg-[#7152F3] w-fit px-2 py-1 text-white rounded-lg text-sm mt-2"
-     >
-      {{ role }}
-     </div>
-   </div>
-       
-
-        <div class="flex justify-between text-sm  mt-8">
-          <div class="flex space-x-1 pt-1  ">
-                <MapPin class="h-5 w-5" />
-               <span class="font-light">{{ task.location }}</span>
+        <!-- Title row -->
+        <div class="flex items-start space-x-3">
+          <div class="bg-[#A2A1A81A] p-2.5 rounded-lg flex-shrink-0">
+            <BriefcaseBusiness class="h-5 w-5 text-gray-500" />
           </div>
-          
-          <span class="flex" >
-            <p class="font-semibold text-base">{{ task.salary }}</p>
-             <p class="mt-1">/Month</p>
-            </span>
+          <div class="min-w-0">
+            <p class="font-semibold text-sm leading-snug">{{ task.title }}</p>
+            <p class="text-xs font-light text-[#A2A1A8] mt-0.5">{{ task.description }}</p>
+          </div>
+        </div>
+
+        <!-- Role badges -->
+        <div class="flex flex-wrap gap-1.5 mt-3">
+          <span
+            v-for="(role, index) in task.roles"
+            :key="index"
+            class="bg-[#7152F3] px-2 py-0.5 text-white rounded-lg text-xs font-light"
+          >
+            {{ role }}
+          </span>
+        </div>
+
+        <!-- Location + salary -->
+        <div class="flex items-center justify-between mt-4 text-sm">
+          <div class="flex items-center gap-1 text-[#A2A1A8] min-w-0">
+            <MapPin class="h-4 w-4 flex-shrink-0" />
+            <span class="font-light text-xs truncate">{{ task.location }}</span>
+          </div>
+          <div class="flex items-baseline gap-0.5 flex-shrink-0 ml-2">
+            <span class="font-semibold text-sm">{{ task.salary }}</span>
+            <span class="text-xs text-[#A2A1A8]">/mo</span>
+          </div>
         </div>
       </div>
     </div>

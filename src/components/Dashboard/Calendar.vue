@@ -34,7 +34,7 @@ const scheduleByDate = ref([
 </script>
 
 <template>
-  <div class="w-80 border border-[#A2A1A833] rounded-lg p-2 mt-4 shadow-sm">
+  <div class="md:w-80  border border-[#A2A1A833] rounded-lg p-2 mt-4 shadow-sm">
     <div class="flex items-center justify-between mb-4 px-2">
       <h1 class="text-lg font-semibold">My Schedule</h1>
       <span class="bg-[#7152F31A] rounded-lg w-fit p-4">

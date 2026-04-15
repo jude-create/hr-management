@@ -59,10 +59,14 @@ const closeModal = () => {
 
 
 <template>
-  <main class="flex w-full h-screen justify-between p-10">
-    <DashboardImg />
+ <main class=" w-full min-h-screen justify-between md:p-10 lg:flex">
+    
+    <!-- Left: Image — hidden on mobile -->
+    <div class="hidden lg:block lg:w-1/2">
+      <DashboardImg />
+    </div>
 
-    <section class="w-3/6 flex flex-col justify-center px-10">
+    <section class="w-full lg:w-1/2 flex flex-col justify-center px-6 md:px-10 py-6 md:py-10">
       <div class="flex items-center space-x-1 mb-6 cursor-pointer" @click="$router.push('/forgot-password')">
         <ChevronLeftIcon class="h-6 w-6" />
         <p>Back</p>

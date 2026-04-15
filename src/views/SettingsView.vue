@@ -127,7 +127,7 @@ watch(selectedAppearance, (newVal) => {
         <div class="relative py-3">
     <div class="flex justify-between items-center">
       <div>
-        <p class="font-semibold">Appearance</p>
+        <p class="font-semibold text-sm">Appearance</p>
         <p class="text-sm text-[#A2A1A8]">Customize how your theme looks on your device</p>
       </div>
       <div class="relative">
@@ -177,7 +177,7 @@ watch(selectedAppearance, (newVal) => {
           <div class="relative py-3">
             <div class="flex justify-between items-center">
               <div>
-                <p class="font-semibold">Language</p>
+                <p class="font-semibold text-sm">Language</p>
                 <p class="text-sm text-[#A2A1A8]">Select your language</p>
               </div>
               <div class="relative">
@@ -221,7 +221,7 @@ watch(selectedAppearance, (newVal) => {
           <!-- Other settings sections -->
           <div class="flex justify-between py-3">
             <div>
-              <p class="font-semibold ">Two-factor Authentication</p>
+              <p class="font-semibold text-sm ">Two-factor Authentication</p>
               <p class="text-sm text-[#A2A1A8]">Keep your account secure by enabling 2FA via mail</p>
             </div>
                <div
@@ -239,7 +239,7 @@ watch(selectedAppearance, (newVal) => {
 
           <div class="flex justify-between py-3">
             <div>
-              <p class="font-semibold">Mobile Push Notifications</p>
+              <p class="font-semibold text-sm">Mobile Push Notifications</p>
               <p class="text-sm text-[#A2A1A8]">Receive push notification</p>
             </div>
              <div
@@ -256,7 +256,7 @@ watch(selectedAppearance, (newVal) => {
 
           <div class="flex justify-between py-3">
             <div>
-              <p class="font-semibold">Desktop Notification</p>
+              <p class="font-semibold text-sm">Desktop Notification</p>
               <p class="text-sm text-[#A2A1A8]">Receive push notification in desktop</p>
             </div>
              <div
@@ -273,7 +273,7 @@ watch(selectedAppearance, (newVal) => {
 
           <div class=" flex justify-between py-3">
             <div>
-              <p class="font-semibold">Email Notifications</p>
+              <p class="font-semibold text-sm">Email Notifications</p>
               <p class="text-sm text-[#A2A1A8]">Receive email notification</p>
             </div>
              <div

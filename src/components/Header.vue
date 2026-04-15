@@ -7,33 +7,36 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import ProfileModal from '@/modals/ProfileModal.vue'
 import useTheme from '@/config/useTheme'
 import departments from '@/data/departments.js'
+import { useSidebarStore } from '@/stores/sidebarStore'
+import { Menu } from 'lucide-vue-next'
 
-const { isDark } = useTheme()
+const { isDark } = useTheme();
 
-const route = useRoute()
-const router = useRouter()
-const isLoggedIn = ref(false)
-const profileModal = ref(false)
+const route = useRoute();
+const router = useRouter();
+const isLoggedIn = ref(false);
+const profileModal = ref(false);
+const sidebar = useSidebarStore();
 
-const toggleLogin = () => (isLoggedIn.value = !isLoggedIn.value)
-const toggleModal = () => (profileModal.value = !profileModal.value)
+const toggleLogin = () => (isLoggedIn.value = !isLoggedIn.value);
+const toggleModal = () => (profileModal.value = !profileModal.value);
 
 const props = defineProps({
   department: {
     type: Object,
     default: null
   }
-})
+});
 
 
 
-const memberId = computed(() => route.params.id)
+const memberId = computed(() => route.params.id);
 
 const member = computed(() => {
   return departments
     .flatMap(dep => dep.members)
     .find(m => m.id === memberId.value)
-})
+});
 
 
 
@@ -79,32 +82,32 @@ const routeMeta = {
     title: 'Settings',
     greeting: 'All System Settings'
   }
-}
+};
 
 const basePath = computed(() => {
   const segments = route.path.split('/')
   return '/' + (segments[1] || '')
-})
+});
 
 const title = computed(() => {
   // Department case
   if (route.path.startsWith('/departments/') && props.department) {
     return `${props.department.name} Department`
-  }
+  };
 
   // Add-new-employee case
   if (route.path === '/employees/add-new-employee') {
     return 'Add New Employee'
-  }
+  };
 
    // employee profile case
  if (route.name === 'employee-profile' && member.value) {
     return member.value.name
-  }
+  };
 
   // Default mapping
   return routeMeta[basePath.value]?.title || 'Hello Robert 👋🏻'
-})
+});
 
 const greeting = computed(() => {
   // Department breadcrumb
@@ -114,7 +117,7 @@ const greeting = computed(() => {
       clickableTo: routeMeta['/departments'].linkTo,
       staticPart: ` >  ${props.department.name} Department`
     }
-  }
+  };
 
   // Add-new-employee breadcrumb
   if (route.path === '/employees/add-new-employee') {
@@ -123,7 +126,7 @@ const greeting = computed(() => {
       clickableTo: routeMeta['/employees'].linkTo,
       staticPart: ' >  Add New Employee'
     }
-  }
+  };
 
    // employee-profile breadcrumb
   if (route.name === 'employee-profile' && member.value) {
@@ -132,78 +135,88 @@ const greeting = computed(() => {
       clickableTo: routeMeta['/employees'].linkTo,
       staticPart: ` > ${member.value.name}`
     }
-  }
+  };
   // Default text
   return routeMeta[basePath.value]?.greeting || 'Good Morning'
-})
+});
 
 const navigateTo = (path) => {
   router.push(path)
-}
+};
 </script>
 
 
 <template>
-  <section class=" sticky top-0 w-full z-40 flex items-center px-3 pt-6 pb-3  "
-  :class="{
+  <section 
+    class="sticky top-0 w-full z-40 flex items-center px-3 pt-4 pb-3"
+    :class="{
       'bg-[#16151C] text-[#FFFFFF]': isDark,
       'bg-[#FFFFFF] text-[#16151C]': !isDark
     }"
   >
-    <!-- Left title -->
-    <div class="font-semibold text-lg">
-      <h2>{{ title }}</h2>
-       <h4 class="text-sm text-gray-500 font-light">
-  <template v-if="typeof greeting === 'object'"
-  >
-    <span 
-      class="cursor-pointer hover:text-[#7152F3] transition-colors"
-      @click="navigateTo(greeting.clickableTo)"
+    <button
+      class="md:hidden p-2 rounded-md hover:bg-gray-200 mr-2 flex-shrink-0"
+      @click="sidebar.toggleSidebar"
     >
-      {{ greeting.clickablePart }}
-    </span>
-    <span> {{ greeting.staticPart }}</span>
-  </template>
-  <template v-else>
-    {{ greeting }}
-  </template>
-</h4>
+     <Menu class="h-7 w-7  transition-transform duration-200 group-hover:scale-110" /> 
+    </button>
 
+    <div class="font-semibold text-lg min-w-0">
+      <h2 class="truncate">{{ title }}</h2>
+      <h4 class="text-sm text-gray-500 font-light truncate">
+        <template v-if="typeof greeting === 'object'">
+          <span class="cursor-pointer hover:text-[#7152F3] transition-colors" @click="navigateTo(greeting.clickableTo)">
+            {{ greeting.clickablePart }}
+          </span>
+          <span> {{ greeting.staticPart }}</span>
+        </template>
+        <template v-else>{{ greeting }}</template>
+      </h4>
     </div>
 
-    <!-- Right: search + profile -->
-    <div class="ml-auto flex items-center space-x-4">
-      <!-- Search -->
-      <div class="relative">
-        <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-2" />
+    <div class="ml-auto flex items-center space-x-2 flex-shrink-0">
+      <!-- Search — desktop only -->
+      <div class="hidden lg:relative lg:flex items-center">
+        <MagnifyingGlassIcon class="h-6 w-6 absolute ml-2 mt-2" />
         <input
           type="text"
           placeholder="Search..."
-          class="pl-10 pr-2 px-2 py-2 w-60 border border-gray-300 rounded-lg bg-transparent focus:outline-none placeholder:text-[#8A8D91] text-base focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
+          class="pl-10 pr-2 py-2 w-60 border border-gray-300 rounded-lg bg-transparent focus:outline-none placeholder:text-[#8A8D91] text-base focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
         />
       </div>
 
       <!-- Notification -->
-      <RouterLink
-        to="/notifications"
-        class="relative border border-gray-300 rounded-lg px-2 py-2 bg-[#A2A1A81A]">
-        <BellIcon class="h-7 w-7  cursor-pointer" />
+      <RouterLink to="/notifications" class="border border-gray-300 rounded-lg px-2 py-2 bg-[#A2A1A81A]">
+        <BellIcon class="h-6 w-6 cursor-pointer" />
       </RouterLink>
 
-      <!-- Profile -->
-      <div 
-        v-on:click="toggleModal" 
-        class="flex items-center border border-gray-300 rounded-lg px-2 py-1 space-x-3 cursor-pointer"
-        @click="toggleLogin"
+      <!-- Profile — hide text on mobile, show avatar only -->
+      <div
+        @click="toggleModal(); toggleLogin()"
+        class="flex items-center border border-gray-300 rounded-lg px-2 py-1 space-x-2 cursor-pointer"
       >
-        <img :src="name" alt="Employee" class="w-10 h-10 rounded-full" />
-        <div>
+        <img :src="name" alt="Employee" class="w-8 h-8 rounded-full flex-shrink-0" />
+        <!-- Hide name on mobile -->
+        <div class="hidden md:block">
           <h3 class="text-base font-medium">Robert Smith</h3>
           <p class="text-xs text-gray-500 font-light">HR Manager</p>
         </div>
-        <ChevronDownIcon class="h-5 w-5" />
+        <ChevronDownIcon class="h-4 w-4" />
       </div>
     </div>
-    <ProfileModal :visible="profileModal" @close="toggleModal" />
+
+    <ProfileModal 
+    :visible="profileModal" 
+    @close="toggleModal" />
   </section>
+
+  <!-- Mobile search bar — full width, no side margins -->
+   <div class="lg:hidden px-3 mx-4   mt-3 border border-gray-300 rounded-lg flex items-center h-16 space-x-1 ">
+        <MagnifyingGlassIcon class="h-6 w-6  ml-2 mt-2" />
+        <input 
+          type="text"
+          placeholder="Search..."
+          class="pl-4 pr-2 px-2 py-2 w-full border border-gray-300 rounded-lg bg-neutral-200/10 focus:outline-none placeholder:text-[#8A8D91] text-base focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
+        />
+      </div>
 </template>

@@ -45,7 +45,7 @@ const isActive = (routeName) => {
 </script>
 
 <template>
-  <aside class="w-52 h-48 border border-[#A2A1A833] shadow mt-5 rounded-lg">
+  <aside class="md:w-52 h-48 border border-[#A2A1A833] shadow md:mt-5 m rounded-lg">
     <nav class="flex-1">
       <ul>
         <li v-for="item in navItems" :key="item.name" class="flex items-center">

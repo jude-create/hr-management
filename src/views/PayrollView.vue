@@ -22,7 +22,7 @@ import { ref } from 'vue';
       <!-- Search -->
 
     <div class="flex justify-between">
-         <div class=" relative ">
+         <div class=" relative md:block hidden ">
         <MagnifyingGlassIcon class="h-6 w-6  absolute ml-2 mt-2" />
        <input
        type="text"
