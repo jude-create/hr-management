@@ -49,7 +49,7 @@ watch(
       'bg-[#FFFFFF] text-[#16151C]': !isDark
     }"
   >
-    <div class="flex  space-x-6 ">
+    <div class="flex  space-x-3 md:space-x-6  overflow-x-auto">
       <button 
         v-for="tab in tabs2" 
         :key="tab.key"

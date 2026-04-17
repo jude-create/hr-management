@@ -74,7 +74,7 @@ const isActive = (path) => route.path === path || route.path.startsWith(path + '
 
     // Mobile — full slide drawer, no margin
     
-    sidebar.isMobile && 'w-full px-5 h-[70%] ',
+    sidebar.isMobile && 'w-full px-5 h-[90%] ',
     sidebar.isMobile && (sidebar.isOpen ? 'translate-y-0' : '-translate-y-full')
   ]"
 >

@@ -67,7 +67,7 @@ const departmentName = computed(() => {
           </div>
 
           <!-- Profile content area -->
-          <div class="md:flex gap-2 min-h-[400px] pt-3">
+          <div class="md:flex  min-h-[400px] pt-3">
             <!-- Employee profile sidebar -->
              <div class="mb-4   "
     :class="{
@@ -79,7 +79,7 @@ const departmentName = computed(() => {
     </div>
 
             <!-- Dynamic content area -->
-            <div class="flex-1 md:overflow-y-auto md:ml-3 mt-2">
+            <div class="flex-1 md:overflow-y-auto md:ml-3 mt-2 ">
               <RouterView :employee="member" :department="departmentName" />
             </div>
           </div>
