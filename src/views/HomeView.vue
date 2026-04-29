@@ -4,8 +4,6 @@ import AttendanceChart from '@/components/Dashboard/AttendanceChart.vue'
 import AttendanceOverview from '@/components/Dashboard/AttendanceOverview.vue'
 import Calendar from '@/components/Dashboard/Calendar.vue'
 import Company from '@/components/Dashboard/Company.vue'
-import Header from '@/components/Header.vue'
-import Navbar from '@/components/Navbar.vue'
 
 
 </script>

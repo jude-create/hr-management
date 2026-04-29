@@ -1,5 +1,5 @@
 <script setup>
-import { UserGroupIcon } from '@heroicons/vue/24/outline';
+import { defineComponent } from 'vue'
 import up from '@/assets/img/up.png';
 import down from '@/assets/img/down.png';
 
@@ -7,7 +7,7 @@ import down from '@/assets/img/down.png';
 defineProps({
   title: String,
   value: Number,
-  icon: Object,
+  icon: [Object, Function],
   percentage: Number,
   trend: String,
   date: String

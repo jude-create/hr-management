@@ -5,227 +5,79 @@ import Image2 from '@/assets/img/image2.png'
 import Image3 from '@/assets/img/image3.png'
 import Image4 from '@/assets/img/image4.png'
 import Image5 from '@/assets/img/image5.png'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
-import useTheme from '@/config/useTheme'
-
-
-const { isDark } = useTheme()
+import TablePagination from '@/components/TablePagination.vue'   // ← NEW
 
 const candidates = [
-  {
-    name: "Leasie Watson",
-    image: Image1,
-    appliedFor: "UI/UX Designer",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    appliedFor: "Sales Manager",
-    appliedDate: "July 14, 2023",
-    email: "agujudeifeanyi@gmail.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    appliedFor: "Sr. UX Designer",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leasie Watson",
-    image: Image4,
-    appliedFor: "Sr. Python Developer",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "In Progress",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Jacob Jones",
-    image: Image1,
-    appliedFor: "BDE",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "In Progress",
-    statusColor: "#EFBE12"
-  },
-   {
-    name: "Ronald Richards",
-    image: Image5,
-    appliedFor: "HR Executive",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Rejected",
-    statusColor: "#F45B69"
-  }, {
-    name: "Leasie Watson",
-    image: Image1,
-    appliedFor: "Project Manager",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Rejected",
-    statusColor: "#F45B69"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    appliedFor: "Business Analyst",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    appliedFor: "Sr. UI/UX Lead",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leasie Watson",
-    image: Image4,
-    appliedFor: "BDM",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "In Progress",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Jacob Jones",
-    image: Image1,
-    appliedFor: "IOS Developer",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Rejected",
-    statusColor: "#F45B69"
-  },
-   {
-    name: "Ronald Richards",
-    image: Image5,
-    appliedFor: "Delivery Head",
-    appliedDate: "July 14, 2023",
-    email: "leasie.w@demo.com",
-    number: "(629) 555-0129",
-    status: "Selected",
-    statusColor: "#3FC28A"
-  },
-];
-// Initialize reactive variables
-const perPage = ref(10)
-const currentPage = ref(1)
-const selectedCandidates = ref([])
-const selectAll = ref(false)
-const showPagination = ref(true)
-const limit = ref(10)
+  { name: "Leasie Watson",     image: Image1, appliedFor: "UI/UX Designer",    appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+  { name: "Darlene Robertson", image: Image2, appliedFor: "Sales Manager",     appliedDate: "July 14, 2023", email: "agujudeifeanyi@gmail.com",   number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, appliedFor: "Sr. UX Designer",   appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+  { name: "Leasie Watson",     image: Image4, appliedFor: "Sr. Python Dev",    appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "In Progress", statusColor: "#EFBE12" },
+  { name: "Jacob Jones",       image: Image1, appliedFor: "BDE",               appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "In Progress", statusColor: "#EFBE12" },
+  { name: "Ronald Richards",   image: Image5, appliedFor: "HR Executive",      appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Rejected",    statusColor: "#F45B69" },
+  { name: "Leasie Watson",     image: Image1, appliedFor: "Project Manager",   appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Rejected",    statusColor: "#F45B69" },
+  { name: "Darlene Robertson", image: Image2, appliedFor: "Business Analyst",  appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, appliedFor: "Sr. UI/UX Lead",    appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+  { name: "Leasie Watson",     image: Image4, appliedFor: "BDM",               appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "In Progress", statusColor: "#EFBE12" },
+  { name: "Jacob Jones",       image: Image1, appliedFor: "IOS Developer",     appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Rejected",    statusColor: "#F45B69" },
+  { name: "Ronald Richards",   image: Image5, appliedFor: "Delivery Head",     appliedDate: "July 14, 2023", email: "leasie.w@demo.com",          number: "(629) 555-0129", status: "Selected",    statusColor: "#3FC28A" },
+]
 
-// Computed properties
+const perPage            = ref(10)
+const currentPage        = ref(1)
+const selectedCandidates = ref([])
+const selectAll          = ref(false)
+
 const totalPages = computed(() => Math.ceil(candidates.length / perPage.value))
+
 const paginatedCandidates = computed(() => {
   const start = (currentPage.value - 1) * perPage.value
-  const end = start + perPage.value
-  return candidates.slice(start, end)
-})
-const currentPageCandidates = computed(() => {
-  return showPagination.value ? paginatedCandidates.value : candidates.slice(0, limit.value)
-})
-const showingRange = computed(() => {
-  const start = (currentPage.value - 1) * perPage.value + 1
-  const end = Math.min(start + perPage.value - 1, candidates.length)
-  return `Showing ${start} to ${end} of ${candidates.length} records`
-})
-const visiblePages = computed(() => {
-  const maxVisible = 5
-  const half = Math.floor(maxVisible / 2)
-  let start = Math.max(currentPage.value - half, 1)
-  let end = Math.min(start + maxVisible - 1, totalPages.value)
-  
-  if (end - start + 1 < maxVisible) {
-    start = Math.max(end - maxVisible + 1, 1)
-  }
-  
-  return Array.from({length: end - start + 1}, (_, i) => start + i)
+  return candidates.slice(start, start + perPage.value)
 })
 
-// Checkbox functions
-const toggleCandidateSelection = (candidate) => {
-  const index = selectedCandidates.value.findIndex(c => c.name === candidate.name)
-  if (index > -1) {
-    selectedCandidates.value.splice(index, 1)
-  } else {
-    selectedCandidates.value.push(candidate)
-  }
-  selectAll.value = selectedCandidates.value.length === currentPageCandidates.value.length
-}
-
-const toggleSelectAll = () => {
-  const currentCandidates = currentPageCandidates.value
-
-  if (selectAll.value) {
-    // Uncheck all
-    selectedCandidates.value = selectedCandidates.value.filter(
-      c => !currentCandidates.some(pageC => pageC.name === c.name)
-    )
-    selectAll.value = false
-  } else {
-    // Check all
-    const remaining = currentCandidates.filter(
-      c => !selectedCandidates.value.some(sel => sel.name === c.name)
-    )
-    selectedCandidates.value.push(...remaining)
-    selectAll.value = true
-  }
-}
-
-
-// Watchers
-watch([selectedCandidates, currentPage, perPage], () => {
-  const current = currentPageCandidates.value
-  selectAll.value = current.every(candidate =>
-    selectedCandidates.value.some(c => c.name === candidate.name)
+// Keep selectAll in sync when page or perPage changes
+watch([currentPage, perPage], () => {
+  selectAll.value = paginatedCandidates.value.every(c =>
+    selectedCandidates.value.some(s => s.name === c.name)
   )
 })
 
+const isSelected = (c) => selectedCandidates.value.some(s => s.name === c.name)
+
+const toggleOne = (candidate) => {
+  const idx = selectedCandidates.value.findIndex(c => c.name === candidate.name)
+  idx > -1
+    ? selectedCandidates.value.splice(idx, 1)
+    : selectedCandidates.value.push(candidate)
+  selectAll.value = paginatedCandidates.value.every(c => isSelected(c))
+}
+
+const toggleAll = () => {
+  if (selectAll.value) {
+    selectedCandidates.value = selectedCandidates.value.filter(
+      c => !paginatedCandidates.value.some(p => p.name === c.name)
+    )
+  } else {
+    paginatedCandidates.value.forEach(c => {
+      if (!isSelected(c)) selectedCandidates.value.push(c)
+    })
+  }
+  selectAll.value = !selectAll.value
+}
 </script>
 
 <template>
   <div class="space-y-4">
-    <!-- Table Container -->
+
+    <!-- DESKTOP TABLE -->
     <div class="overflow-x-auto">
       <div class="inline-block min-w-full">
-        <!-- Table Header -->
-        <div class="lg:grid hidden grid-cols-15 border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] items-center  ">
-          <div class="col-span-1 px-2 flex items-center">
-           <input
-             type="checkbox"
-            :checked="selectAll"
-            @change="toggleSelectAll"
-          class="h-4 w-4 rounded border-gray-300 text-[#7152F3] focus:ring-[#7152F3]"
-          />
 
+        <div class="lg:grid hidden grid-cols-15 border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] items-center">
+          <div class="col-span-1 px-2">
+            <input type="checkbox" :checked="selectAll" @change="toggleAll"
+              class="h-4 w-4 rounded border-gray-300 text-[#7152F3] focus:ring-[#7152F3]" />
           </div>
-          <div class="col-span-3 px-2 ">Candidate Name</div>
+          <div class="col-span-3 px-2">Candidate Name</div>
           <div class="col-span-2 px-2">Applied For</div>
           <div class="col-span-2 px-2">Applied Date</div>
           <div class="col-span-3 px-2">Email Address</div>
@@ -233,170 +85,78 @@ watch([selectedCandidates, currentPage, perPage], () => {
           <div class="col-span-1 px-2 text-right">Status</div>
         </div>
 
-        <!-- Table Rows -->
-        <div class="divide-y-2 divide-[#A2A1A81A] hidden lg:block ">
+        <div class="divide-y-2 divide-[#A2A1A81A] hidden lg:block">
           <div
-            v-for="(candidate, index) in currentPageCandidates"
+            v-for="(candidate, index) in paginatedCandidates"
             :key="index"
             class="grid grid-cols-15 py-2 items-center hover:bg-[#7152F310] transition-colors"
           >
-            <!-- Checkbox -->
-            <div class="col-span-1 px-2 flex items-center">
-              <input
-                type="checkbox"
-                :checked="selectedCandidates.some(c => c.name === candidate.name)"
-                @change="toggleCandidateSelection(candidate)"
-                class="h-4 w-4 rounded border-gray-300 text-[#7152F3] focus:ring-[#7152F3]"
-              />
+            <div class="col-span-1 px-2">
+              <input type="checkbox" :checked="isSelected(candidate)" @change="toggleOne(candidate)"
+                class="h-4 w-4 rounded border-gray-300 text-[#7152F3] focus:ring-[#7152F3]" />
             </div>
-            
-            <!-- Candidate Name -->
             <div class="col-span-3 px-2 flex items-center space-x-2 min-w-[220px]">
-              <img 
-                :src="candidate.image" 
-                alt="Employee" 
-                class="w-10 h-10 rounded-full object-cover flex-shrink-0" 
-              />
+              <img :src="candidate.image" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
               <p class="font-light text-sm truncate">{{ candidate.name }}</p>
             </div>
-            
-            <!-- Applied For -->
             <div class="col-span-2 px-2 font-light text-sm truncate min-w-[150px]">{{ candidate.appliedFor }}</div>
-            
-            <!-- Applied Date -->
-            <div class="col-span-2 px-12 font-light text-sm min-w-[110px]">{{ candidate.appliedDate }}</div>
-            
-            <!-- Email -->
+            <div class="col-span-2 px-2 font-light text-sm min-w-[110px]">{{ candidate.appliedDate }}</div>
             <div class="col-span-3 px-2 font-light text-sm truncate min-w-[170px]">{{ candidate.email }}</div>
-            
-            <!-- Mobile -->
             <div class="col-span-2 px-2 font-light text-sm truncate min-w-[120px]">{{ candidate.number }}</div>
-            
-            <!-- Status -->
             <div class="col-span-1 px-2 min-w-[90px]">
               <span
-                class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg whitespace-nowrap "
-                :style="{ 
-                  color: candidate.statusColor, 
-                  backgroundColor: `${candidate.statusColor}1A` 
-                }"
-              >
-                {{ candidate.status }}
-              </span>
+                class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg whitespace-nowrap"
+                :style="{ color: candidate.statusColor, backgroundColor: `${candidate.statusColor}1A` }"
+              >{{ candidate.status }}</span>
             </div>
           </div>
         </div>
-        <!-- MOBILE CARDS — hidden on desktop -->
-<div class="lg:hidden divide-y-2 divide-[#A2A1A81A]">
-  <div
-    v-for="(candidate, index) in currentPageCandidates"
-    :key="'m-' + index"
-    class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
-  >
-    <!-- Top row -->
-    <div class="flex items-start justify-between">
-      <!-- Left: checkbox + avatar + name -->
-      <div class="flex items-start space-x-3">
-        <input
-          type="checkbox"
-          :checked="selectedCandidates.some(c => c.name === candidate.name)"
-          @change="toggleCandidateSelection(candidate)"
-          class="mt-1 h-4 w-4 rounded border-gray-300 text-[#7152F3]"
-        />
 
-        <img
-          :src="candidate.image"
-          class="w-10 h-10 rounded-full object-cover"
-        />
-
-        <div>
-          <p class="text-sm font-medium">{{ candidate.name }}</p>
-          <p class="text-xs text-[#A2A1A8]">{{ candidate.appliedFor }}</p>
+        <!-- MOBILE CARDS -->
+        <div class="lg:hidden divide-y-2 divide-[#A2A1A81A]">
+          <div
+            v-for="(candidate, index) in paginatedCandidates"
+            :key="'m-' + index"
+            class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" :checked="isSelected(candidate)" @change="toggleOne(candidate)"
+                  class="mt-1 h-4 w-4 rounded border-gray-300 text-[#7152F3]" />
+                <img :src="candidate.image" class="w-10 h-10 rounded-full object-cover" alt="" />
+                <div>
+                  <p class="text-sm font-medium">{{ candidate.name }}</p>
+                  <p class="text-xs text-[#A2A1A8]">{{ candidate.appliedFor }}</p>
+                </div>
+              </div>
+              <span
+                class="text-xs px-3 py-1 rounded-lg whitespace-nowrap"
+                :style="{ color: candidate.statusColor, backgroundColor: `${candidate.statusColor}1A` }"
+              >{{ candidate.status }}</span>
+            </div>
+            <div class="mt-3 space-y-1 text-xs text-[#A2A1A8] pl-9">
+              <p><span class="font-medium text-gray-500">Date:</span> {{ candidate.appliedDate }}</p>
+              <p class="truncate"><span class="font-medium text-gray-500">Email:</span> {{ candidate.email }}</p>
+              <p><span class="font-medium text-gray-500">Phone:</span> {{ candidate.number }}</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Status -->
-      <span
-        class="text-xs px-3 py-1 rounded-lg whitespace-nowrap"
-        :style="{
-          color: candidate.statusColor,
-          backgroundColor: `${candidate.statusColor}1A`
-        }"
-      >
-        {{ candidate.status }}
-      </span>
-    </div>
-
-    <!-- Bottom details -->
-    <div class="mt-3 space-y-1 text-xs text-[#A2A1A8] pl-9">
-      <p><span class="font-medium text-gray-500">Date:</span> {{ candidate.appliedDate }}</p>
-      <p class="truncate"><span class="font-medium text-gray-500">Email:</span> {{ candidate.email }}</p>
-      <p><span class="font-medium text-gray-500">Phone:</span> {{ candidate.number }}</p>
-    </div>
-  </div>
-</div>
       </div>
     </div>
 
-    <!-- Selected count display -->
-    <div v-if="selectedCandidates.length > 0" class="text-sm text-gray-600 px-2">
+    <!-- Selection count -->
+    <p v-if="selectedCandidates.length" class="text-sm text-gray-600 px-2">
       {{ selectedCandidates.length }} candidate(s) selected
-    </div>
+    </p>
 
-    <!-- Pagination -->
-    <div v-if="showPagination" class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-4 px-2">
-      <!-- Rows per page selector -->
-      <div class="flex items-center space-x-2">
-        <label class="text-xs sm:text-sm text-[#A2A1A8]">Showing</label>
-        <select 
-          v-model="perPage" 
-          class="border rounded px-2 py-1 text-xs sm:text-sm "
-          :class="{
-            'bg-[#16151C] text-[#FFFFFF]': isDark,
-            'bg-[#FFFFFF] text-[#16151C]': !isDark
-          }"
-          >
-          <option :value="5">5</option>
-          <option :value="10">10</option>
-          <option :value="15">15</option>
-        </select>
-      </div>
+    <!-- ↓ REPLACED: was ~35 lines of pagination markup, now 7 ↓ -->
+    <TablePagination
+      v-model:currentPage="currentPage"
+      v-model:perPage="perPage"
+      :totalPages="totalPages"
+      :totalItems="candidates.length"
+    />
 
-      <!-- Pagination controls -->
-      <div class="flex items-center space-x-4">
-        <div class="text-sm text-gray-600">{{ showingRange }}</div>
-        
-        <button
-          :disabled="currentPage === 1"
-          @click="currentPage--"
-          class="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-        >
-          <ChevronLeftIcon class="h-5 w-5" />
-        </button>
-
-        <div class="flex space-x-1">
-          <button
-            v-for="page in visiblePages"
-            :key="page"
-            @click="currentPage = page"
-            :class="[
-              'px-3 py-1 rounded text-sm',
-              currentPage === page 
-              ? 'border border-[#7152F3] text-[#7152F3] font-semibold' : 'hover:bg-gray-100'
-            ]"
-          >
-            {{ page }}
-          </button>
-        </div>
-
-        <button
-          :disabled="currentPage === totalPages"
-          @click="currentPage++"
-          class="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-        >
-          <ChevronRightIcon class="h-5 w-5" />
-        </button>
-      </div>
-    </div>
   </div>
 </template>

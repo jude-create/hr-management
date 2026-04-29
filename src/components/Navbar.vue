@@ -40,6 +40,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 
+
+
 const navItems = ref([
   { name: 'Dashboard', path: '/', icon: LayoutGrid, iconSolid: LayoutGridSolid },
   { name: 'All Employees', path: '/employees', icon: UserGroupIcon, iconSolid: UserGroupIconSolid },

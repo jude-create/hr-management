@@ -5,7 +5,7 @@ import App from './App.vue'
 import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
 import { createPinia } from 'pinia'
-// import './assets/styles/scrollbar.css'
+
 
 
 const app = createApp(App)

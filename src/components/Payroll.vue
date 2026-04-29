@@ -5,348 +5,124 @@ import Image2 from '@/assets/img/image2.png'
 import Image3 from '@/assets/img/image3.png'
 import Image4 from '@/assets/img/image4.png'
 import Image5 from '@/assets/img/image5.png'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
-import useTheme from '@/config/useTheme'
-
-const { isDark } = useTheme()
+import TablePagination from '@/components/TablePagination.vue'   // ← NEW
 
 const employees = [
-  {
-    name: "Leasie Watson",
-    image: Image1,
-    ctc: "$50,000",
-    salary: "$4,166",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    ctc: "$60,000",
-    salary: "$5,000",
-    deduction: "$500",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    ctc: "$55,000",
-    salary: "$4,583",
-    deduction: "$300",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leasie Watson",
-    image: Image4,
-    ctc: "$70,000",
-    salary: "$5,833",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Jacob Jones",
-    image: Image1,
-    ctc: "$65,000",
-    salary: "$5,416",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-   {
-    name: "Ronald Richards",
-    image: Image5,
-    ctc: "$75,000",
-    salary: "$6,250",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-   {
-    name: "Jenny Wilson",
-    image: Image1,
-    ctc: "80,000",
-    salary: "$6,666",
-    deduction: "$200",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    ctc: "$90,000",
-    salary: "$7,500",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    ctc: "$85,000",
-    salary: "$7,083",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  }, {
-    name: "Leasie Watson",
-    image: Image1,
-    ctc: "$50,000",
-    salary: "$4,166",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    ctc: "$60,000",
-    salary: "$5,000",
-    deduction: "$500",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    ctc: "$55,000",
-    salary: "$4,583",
-    deduction: "$300",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leasie Watson",
-    image: Image4,
-    ctc: "$70,000",
-    salary: "$5,833",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Jacob Jones",
-    image: Image1,
-    ctc: "$65,000",
-    salary: "$5,416",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-   {
-    name: "Ronald Richards",
-    image: Image5,
-    ctc: "$75,000",
-    salary: "$6,250",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-   {
-    name: "Jenny Wilson",
-    image: Image1,
-    ctc: "80,000",
-    salary: "$6,666",
-    deduction: "$200",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  },
-  {
-    name: "Darlene Robertson",
-    image: Image2,
-    ctc: "$90,000",
-    salary: "$7,500",
-    deduction: "-",
-    status: "Completed",
-    statusColor: "#3FC28A"
-  },
-  {
-    name: "Leslie Alexander",
-    image: Image3,
-    ctc: "$85,000",
-    salary: "$7,083",
-    deduction: "-",
-    status: "Pending",
-    statusColor: "#EFBE12"
-  }
-];
+  { name: "Leasie Watson",     image: Image1, ctc: "$50,000", salary: "$4,166", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Darlene Robertson", image: Image2, ctc: "$60,000", salary: "$5,000", deduction: "$500", status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, ctc: "$55,000", salary: "$4,583", deduction: "$300", status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leasie Watson",     image: Image4, ctc: "$70,000", salary: "$5,833", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Jacob Jones",       image: Image1, ctc: "$65,000", salary: "$5,416", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Ronald Richards",   image: Image5, ctc: "$75,000", salary: "$6,250", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Jenny Wilson",      image: Image1, ctc: "$80,000", salary: "$6,666", deduction: "$200", status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Darlene Robertson", image: Image2, ctc: "$90,000", salary: "$7,500", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, ctc: "$85,000", salary: "$7,083", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Leasie Watson",     image: Image1, ctc: "$50,000", salary: "$4,166", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Darlene Robertson", image: Image2, ctc: "$60,000", salary: "$5,000", deduction: "$500", status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, ctc: "$55,000", salary: "$4,583", deduction: "$300", status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leasie Watson",     image: Image4, ctc: "$70,000", salary: "$5,833", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Jacob Jones",       image: Image1, ctc: "$65,000", salary: "$5,416", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Ronald Richards",   image: Image5, ctc: "$75,000", salary: "$6,250", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Jenny Wilson",      image: Image1, ctc: "$80,000", salary: "$6,666", deduction: "$200", status: "Pending",   statusColor: "#EFBE12" },
+  { name: "Darlene Robertson", image: Image2, ctc: "$90,000", salary: "$7,500", deduction: "-",    status: "Completed", statusColor: "#3FC28A" },
+  { name: "Leslie Alexander",  image: Image3, ctc: "$85,000", salary: "$7,083", deduction: "-",    status: "Pending",   statusColor: "#EFBE12" },
+]
 
-const perPage = ref(10) // default items per page
+const perPage     = ref(10)
 const currentPage = ref(1)
 
 const totalPages = computed(() => Math.ceil(employees.length / perPage.value))
 
 const paginatedEmployees = computed(() => {
   const start = (currentPage.value - 1) * perPage.value
-  const end = start + perPage.value
-  return employees.slice(start, end)
-})
-
-const showingRange = computed(() => {
-  const start = (currentPage.value - 1) * perPage.value + 1
-  const end = Math.min(start + perPage.value - 1, employees.length)
-  return `Showing ${start} to ${end} of ${employees.length} records`
+  return employees.slice(start, start + perPage.value)
 })
 
 defineProps({
-  showPagination: {
-    type: Boolean,
-    default: true
-  },
-    limit: {
-    type: Number,
-    default: 10
-  }
+  showPagination: { type: Boolean, default: true },
+  limit:          { type: Number,  default: 10   },
 })
-
-
-
-
-
 </script>
-
 
 <template>
   <div class="overflow-x-auto space-y-4">
-    <!-- Table -->
+
+    <!-- DESKTOP TABLE -->
     <div class="hidden md:block">
-      <!-- Table Header -->
-      <div class="flex border-b-2 border-gray-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-base">
+      <div class="flex border-b-2 border-[#A2A1A81A] pb-3 font-light text-[#A2A1A8] text-sm">
         <div class="w-[30%] px-4">Employee Name</div>
         <div class="w-[20%] px-4">CTC</div>
         <div class="w-[20%] px-4">Salary Per Month</div>
-        <div class="w-[20%] px-4">Deduction</div>
-        <div class="w-[20%] px-4">Status</div>
+        <div class="w-[15%] px-4">Deduction</div>
+        <div class="w-[15%] px-4">Status</div>
       </div>
-
-      <!-- Table Rows -->
       <div class="divide-y-2 divide-[#A2A1A81A]">
         <div
-         v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
-        :key="index"
-          class="flex py-2 items-center hover:bg-[#7152F310] transition-colors text-base"
+          v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
+          :key="index"
+          class="flex py-2 items-center hover:bg-[#7152F310] transition-colors text-sm"
         >
-          <div class="w-[30%] px-4 flex items-center space-x-4">
-            <img :src="employee.image" alt="Employee" class="w-12 h-12 rounded-full object-cover" />
+          <div class="w-[30%] px-4 flex items-center gap-3">
+            <img :src="employee.image" alt="" class="w-10 h-10 rounded-full object-cover" />
             <p class="font-light">{{ employee.name }}</p>
           </div>
           <div class="w-[20%] px-4 font-light">{{ employee.ctc }}</div>
           <div class="w-[20%] px-4 font-light">{{ employee.salary }}</div>
-          <div class="w-[20%] px-4 font-light">{{ employee.deduction }}</div>
-          <div class="w-[20%] px-4">
+          <div class="w-[15%] px-4 font-light">{{ employee.deduction }}</div>
+          <div class="w-[15%] px-4">
             <span
-              class="inline-flex items-center justify-center font-light text-sm px-4 py-2 rounded-lg"
+              class="inline-flex items-center justify-center font-light text-xs px-3 py-1.5 rounded-lg"
               :style="{ color: employee.statusColor, backgroundColor: `${employee.statusColor}1A` }"
-            >
-              {{ employee.status }}
-            </span>
+            >{{ employee.status }}</span>
           </div>
         </div>
       </div>
     </div>
 
-     <!-- MOBILE CARDS — hidden on desktop -->
+    <!-- MOBILE CARDS -->
     <div class="md:hidden divide-y-2 divide-[#A2A1A81A]">
       <div
         v-for="(employee, index) in showPagination ? paginatedEmployees : employees.slice(0, limit)"
-        :key="index"
+        :key="'m-' + index"
         class="py-3 px-2 hover:bg-[#7152F310] transition-colors"
       >
-        <!-- Top row: avatar + name + status badge -->
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center space-x-3">
-            <img :src="employee.image" alt="Employee" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <img :src="employee.image" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
             <div>
               <p class="text-sm font-medium">{{ employee.name }}</p>
-             <div class="flex items-center space-x-4 mt-1">
-              <p class=" font-light text-[#A2A1A8] text-center">Salary -</p>
-              <p class="text-sm text-[#A2A1A8] font-bold">{{ employee.salary }}</p>
-             </div>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-xs text-[#A2A1A8] font-light">Salary</span>
+                <span class="text-xs font-bold text-[#A2A1A8]">{{ employee.salary }}</span>
+              </div>
             </div>
           </div>
           <span
             class="inline-flex items-center justify-center font-light text-xs px-3 py-1 rounded-lg flex-shrink-0"
             :style="{ color: employee.statusColor, backgroundColor: `${employee.statusColor}1A` }"
-          >
-            {{ employee.status }}
-          </span>
+          >{{ employee.status }}</span>
         </div>
-
-        <!-- Bottom row: type + check-in -->
-        <div class="flex items-center space-x-12 pl-13 ml-13">
-          <div >
-           <p class="text-[#A2A1A8] font-light text-center">CTC</p>
-            <span class="text-sm text-[#A2A1A8] font-bold">{{ employee.ctc }}</span>
+        <div class="flex items-center gap-10 px-2">
+          <div>
+            <p class="text-xs text-[#A2A1A8] font-light">CTC</p>
+            <p class="text-xs font-bold text-[#A2A1A8]">{{ employee.ctc }}</p>
           </div>
-          <div >
-            <p class="text-[#A2A1A8] font-light text-end">Deduction</p>
-            <span class="text-sm text-[#A2A1A8] pl-5 font-bold">{{ employee.deduction }}</span>
+          <div>
+            <p class="text-xs text-[#A2A1A8] font-light">Deduction</p>
+            <p class="text-xs font-bold text-[#A2A1A8]">{{ employee.deduction }}</p>
           </div>
         </div>
       </div>
     </div>
-   <!-- Pagination Controls (only visible if showPagination is true) -->
 
-  <div
-  v-if="showPagination"
-  class="flex justify-between items-center mt-4 px-2 flex-wrap gap-4"
->
-  <!-- Rows per page selector -->
-  <div class="space-x-4 flex items-center">
-    <label class="text-sm text-[#A2A1A8]">Showing</label>
-    <select v-model="perPage" class="border rounded-md px-3 py-1 text-sm"
-      :class="{
-      'bg-[#16151C] text-[#FFFFFF]': isDark,
-      'bg-[#FFFFFF] text-[#16151C]': !isDark
-    }"
-    >
-      <option :value="5">5</option>
-      <option :value="10">10</option>
-      <option :value="15">15</option>
-    </select>
-  </div>
-
-  <!-- Pagination buttons -->
-  <div class="flex items-center space-x-4">
-    <div class="text-sm text-gray-600">{{ showingRange }}</div>
-    
-    <!-- Prev -->
-    <button
-      :disabled="currentPage === 1"
-      @click="currentPage--"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
-    >
-      <ChevronLeftIcon class="h-6 w-6 inline-block" />
-    </button>
-
-    <!-- Dynamic Page Numbers -->
-    <div class="flex space-x-2">
-      <button
-        v-for="page in totalPages"
-        :key="page"
-        @click="currentPage = page"
-        :class="[
-          'px-3 py-1  text-base',
-          currentPage === page ? 'border border-[#7152F3] text-[#7152F3] font-semibold rounded-lg' : 'hover:bg-gray-100'
-        ]"
-      >
-        {{ page }}
-      </button>
-    </div>
-
-    <!-- Next -->
-    <button
-      :disabled="currentPage === totalPages || totalPages === 0"
-      @click="currentPage++"
-      class="px-3 py-1 rounded hover:bg-gray-100 text-sm disabled:opacity-50"
-    >
-      <ChevronRightIcon class="h-6 w-6 inline-block" />
-    </button>
-  </div>
-</div>
+    <!-- ↓ REPLACED: was ~35 lines of pagination markup, now 7 ↓ -->
+    <TablePagination
+      v-if="showPagination"
+      v-model:currentPage="currentPage"
+      v-model:perPage="perPage"
+      :totalPages="totalPages"
+      :totalItems="employees.length"
+    />
 
   </div>
-</template> 
+</template>
