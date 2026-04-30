@@ -211,12 +211,12 @@ const navigateTo = (path) => {
   </section>
 
   <!-- Mobile search bar — full width, no side margins -->
-   <div class="lg:hidden px-3 mx-4   mt-3 border border-gray-300 rounded-lg flex items-center h-16 space-x-1 ">
-        <MagnifyingGlassIcon class="h-6 w-6  ml-2 mt-2" />
+   <div class="lg:hidden px-3    mt-3 flex items-center  space-x-1 ml-auto flex-shrink-0 relative ">
+        <MagnifyingGlassIcon class="h-6 w-6  ml-2 mt-2 absolute" />
         <input 
           type="text"
           placeholder="Search..."
-          class="pl-4 pr-2 px-2 py-2 w-full border border-gray-300 rounded-lg bg-neutral-200/10 focus:outline-none placeholder:text-[#8A8D91] text-base focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
+          class="pl-10 pr-2 px-2 py-2 w-full border border-gray-300 rounded-lg bg-neutral-200/10 focus:outline-none placeholder:text-[#8A8D91] text-base focus:border-[#7152F3] focus:ring-2 focus:ring-[#7152F3] transition duration-200"
         />
       </div>
 </template>
